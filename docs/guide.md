@@ -5,7 +5,7 @@
   </a>
 </p>
 <p align="center">
-  模块化的快速开发框架
+  模块化的极速开发框架
 </p>
 
 <p align="center">  
@@ -31,7 +31,7 @@
 </p>
 
 
-# ModStart是基于Laravel的模块化快速开发框架
+# ModStart是基于Laravel的模块化极速开发框架
 
 
 ##  🔥 当前版本
@@ -42,7 +42,10 @@ QQ交流群：467107293
 
 ##  💡 系统简介
 
-`ModStart` 是一个基于 `Laravel` 模块化快速开发框架。基于 Apache 2.0 开源协议发布，**免费且不限制商业使用**。模块市场包含了丰富的模块，后台一键快速安装，让开发者能够从冗长的代码中提效。
+`ModStart` 是一个基于 `Laravel` 模块化极速开发框架。模块市场拥有丰富的功能应用，支持后台一键快速安装，让开发者能快的实现业务功能开发。 
+
+系统完全开源，基于 Apache 2.0 开源协议，**免费且不限制商业使用**。
+
 
 <img src="https://ms-assets.modstart.com/data/image/2021/11/07/46017_dv5r_7358.jpg" alt="功能架构" />
 
@@ -55,11 +58,10 @@ QQ交流群：467107293
 **技术栈**
 
 - [Laravel](https://laravel.com/)
-- [jQuery](http://jquery.com)
 - [Vue](https://vuejs.org/)
 - [Element UI](https://element.eleme.io/)
 - [LayUI](https://github.com/sentsin/layui)
-
+- [jQuery](http://jquery.com)
 
 
 ##  💥 系统特性
@@ -185,7 +187,7 @@ ModStart 的版本发行将会参考主流 web 框架的发行策略，尽量降
 对于小版本的发行，开发者可以放心的升级，基本不用担心代码兼容性问题。只有像从 v2.0.0 到 v3.0.0 这样的大版本升级才可能会有兼容性问题，小版本则基本是完全兼容的（小版本升级也可能会有不兼容的情况，但几率很小）。
 
 
-##  🔨 快速开发
+##  🔨 极速开发
 
 
 以一个增删改查页面的基本构成，通过学习下面的内容将可以帮助大家快速理解 `ModStart` 基本使用方法。

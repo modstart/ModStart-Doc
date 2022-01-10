@@ -7,12 +7,12 @@ actionText: 开始 →
 actionLink: /guide.md
 features:
 - title: Laravel
-  details: 简洁、优雅的Web开发框架
-- title: 模块支持
-  details: 内置积木式的模块管理开发
-- title: 快速集成
-  details: 基于标准Composer，可快速集成
-footer: Copyright © 2021 ModStart
+  details: 简洁优雅的Web开发框架
+- title: 模块市场
+  details: 点点鼠标就能安装丰富的功能
+- title: 极速开发
+  details: 很少的代码构建复杂的应用
+footer: Copyright © 2016-2022 ModStart
 ---
 
 <p align="center">  

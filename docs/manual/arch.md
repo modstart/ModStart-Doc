@@ -15,6 +15,9 @@ ROOT
 ├── module                 → 模块源码，模块源码都会放在该目录下，每个模块一个文件夹
 │     ├── Xxx              → 其他模块
 │     └── Vendor           → 模块基础代码
+├── public                 → 模块源码，模块源码都会放在该目录下，每个模块一个文件夹
+│     ├── vendor           → 其他模块
+│           └── Xxx        → 模块静态资源文件
 ├── vendor                 → 
 │     └── modstart         → 
 │           └── modstart   → ModStart核心架构目录

@@ -77,6 +77,17 @@ AllowOverride All
 </IfModule>
 ```
 
+## Q：忘记后台管理密码怎么办
+
+系统中使用的是 md5 组合加密，如果忘记后台管理密码，请将表 `admin_user` 对应的用户记录密码信息重置为如下：
+
+```
+password: 3c20ecadec461ce77179008a44850334
+passwordSalt: KUBg1mMi5I
+```
+
+对应的密码为：`123456`
+
 
 
 
