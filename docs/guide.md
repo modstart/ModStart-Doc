@@ -34,11 +34,46 @@
 # ModStart是基于Laravel的模块化极速开发框架
 
 
-##  🔥 当前版本
+##  🔥 功能一览
 
-最新版本 <img alt="GitHub last release" style="vertical-align:middle;height:18px;" src="https://img.shields.io/github/v/release/modstart/ModStartCMS?style=flat-square">，功能完善，模块市场丰富，欢迎交流。
+最新版本 <img alt="GitHub last release" style="vertical-align:middle;height:18px;" src="https://img.shields.io/github/v/release/modstart/ModStartCMS?style=flat-square">，功能完善，模块市场丰富，欢迎交流。QQ交流群： [467107293](https://qm.qq.com/cgi-bin/qm/qr?k=JP5GySRSCM8BUVoIGwfXF_bCe6gPajEb&jump_from=webapi)
 
-QQ交流群： [467107293](https://qm.qq.com/cgi-bin/qm/qr?k=JP5GySRSCM8BUVoIGwfXF_bCe6gPajEb&jump_from=webapi)
+- 会员模块通用且完整，支持完整的API调用
+- 大文件分片上传，进度条显示，已上传文件管理
+- 强大的模块扩展功能，所有模块可以无缝集成，支持在线安装、卸载模块
+- 完善的开发助手，实现模块、主题的的一键创建
+- 完善的后台权限管理，支持基于RBAC的权限管理系统
+- 后台管理自使用手机、平板、PC，无论何时何地都可方便管理
+- 第三方登录（QQ、微信、微博）
+- 第三方支付支持（微信、支付宝），微信支持PC端扫码支付
+- 第三方云存储支持，支持云储存分片上传（阿里云、百度云、华为云、腾讯云、FTP、七牛云、UCloud、又拍云）
+- 第三方短信支持（阿里云、腾讯云、华为云、百度云、253云通讯、聚合、七牛云、融云、赛邮、UCloud、云片、网易云）
+- 丰富优秀的模块支持：
+  - [视频点播课](https://modstart.com/m/CourseVideo)
+  - [一物一码防伪溯源](https://modstart.com/m/Tracking)
+  - [文章投稿系统](https://modstart.com/m/CmsWriter)
+  - [Markdown文档管理](https://modstart.com/m/Markdown)
+  - [视频管理系统](https://modstart.com/m/Video)
+  - [邮件营销系统](https://modstart.com/m/Edm)
+  - [视频直播系统](https://modstart.com/m/CourseLive)
+  - [文库系统](https://modstart.com/m/Wenku)
+  - [相册系统](https://modstart.com/m/Photo)
+  - [文库系统](https://modstart.com/m/Wenku)
+  - [问答系统](https://modstart.com/m/Wenda)
+  - [IT工具箱](https://modstart.com/m/Tools)
+  - [帮助中心系统](https://modstart.com/m/CmsHelp)
+  - [短连接系统](https://modstart.com/m/ShortLink)
+  - [论坛系统](https://modstart.com/m/Forum)
+  - [个人博客系统](https://modstart.com/m/Blog)
+  - [发卡系统](https://modstart.com/m/Faka)
+  - [积分商城](https://modstart.com/m/CreditShop)
+  - [兼职招聘系统](https://modstart.com/m/Hire)
+  - [课程报名系统](https://modstart.com/m/Course)
+  - [活动报名系统](https://modstart.com/m/Event)
+  - [简单商城系统](https://modstart.com/m/Shop)
+  - [网盘系统](https://modstart.com/m/Pan)
+  - [微信公众号管理系统](https://modstart.com/m/WechatMP)
+  - [在线客服系统](https://modstart.com/m/LiveChat)
 
 ##  💡 系统简介
 
