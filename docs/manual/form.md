@@ -1,50 +1,5 @@
 # 数据表单
 
-
-## 基本使用
-
-`ModStart\Form\Form` 类用于生成基于数据模型的表单
-
-先来个例子，数据库中有 `news` 表
-
-```sql
-CREATE TABLE `news` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `cover` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `summary` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `content` text,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-```
-
-下面的代码可以生成表 `news` 的数据表格
-
-```php
-<?php
-namespace App\Admin\Controller;
-
-use Illuminate\Routing\Controller;
-use ModStart\Form\Form;
-
-class NewsController extends Controller
-{
-    protected function form()
-    {
-        $form = new Form('news', function (Form $form) {
-            $form->text('title', '名称');
-            $form->image('cover', '封面');
-            $form->textarea('summary', '摘要');
-            $form->richHtml('content', '内容');
-        });
-        $form->title('新闻管理');
-        return $form;
-    }
-}
-```
-
 ## 字段支持
 
 ### 显示 display

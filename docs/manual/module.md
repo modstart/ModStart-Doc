@@ -1,47 +1,6 @@
-# 模块开发
-
-## 模块开发介绍
-
-在开发模块之前，请在模块市场自行安装《开发示例程序》，该示例中涵盖了几乎所有模块开发规范和技巧。
-
-> 开发示例程序： [https://modstart.com/m/Demo](https://modstart.com/m/Demo)
->
->  开发示例程序会不断更新，请随时查看最新的开发示例程序。
-
-## 模块开发入门
-
-#### 第一步，下载模块开发助手
-
-模块开发助手可以极大效率的提高模块开发效率，通过 [https://modstart.com/m/ModuleDeveloper](https://modstart.com/m/ModuleDeveloper) 下载。
-
-#### 第二步，使用模块开发助手创建模块
-
-访问 系统管理 → 模块开发助手，通过常用工具创建模块
-
-![模块创建](https://ms-assets.modstart.com/data/image/2021/12/17/31613_esmy_3179.jpg)
-
-#### 第三步，完成模块代码开发
-
-第二步会根据填写的模块基本信息完成模块的创建，并且生成一些示例代码，通过修改和完善模块代码，完成模块的功能开发
-
-![模块示例代码](https://ms-assets.modstart.com/data/image/2021/12/17/31874_agbl_4387.jpg)
-
-#### 第四步，模块打包上传到模块市场
-
-如果您开发的模块需要上传分享到模块市场，按照如下步骤完成模块分享。
-
-1. 注册ModStart账号：访问 [https://modstart.com](https://modstart.com) 完成账号注册
-2. 实名认证：在用户中心完成用户实名认证
-3. 创建模块：认证完成后，在用户中心访问开发者中心，完成模块的创建
-4. 打包上传：返回到本地的模块开发助手，登录ModStart账号，在对应开发的模块中点击发布
-5. 模块审核上线：发布成功后，需要后台审核模块，完成审核后模块即可显示在模块市场。
-
-![模块打包上传](https://ms-assets.modstart.com/data/image/2021/09/25/30055_qizj_4881.gif)
-
+# 模块架构
 
 ## 模块目录介绍
-
-### 模块详细目录介绍
 
 ```
 SomeName
@@ -62,7 +21,7 @@ SomeName
 └── resources                            → 模块其他资源文件
 ```
 
-### 配置文件 config.json
+## 配置文件 config.json
 
 配置文件是一个合法的JSON，请勿在JSON中包含注释，以下为了参数含义会在JSON中包含注释
 
@@ -146,37 +105,45 @@ SomeName
 }
 ```
 
-
-## Web前台开发 
-
-前台代码 Routes、Controller 都应放在 `Web` 目录中。
-
-## Admin后台开发
-
-前台代码 Routes、Controller 都应放在 `Admin` 目录中。
-
-### 注册后台菜单
+## 后台导航菜单注册
 
 在 `Core/ModuleServiceProvider.php` 中配置，通过如下方式注册菜单：
 
 ```php
-<?php
-AdminMenu::register(function(){
+AdminMenu::register(function () {
     return [
-       'menu' => [
-           [
-               'title' => '一级菜单',
-               'icon' => 'tools',
-               'sort' => 150,
-               'children' => [
-                   [
-                       'title' => '二级菜单',
-                       'url' => '\XxxController@index',
-                   ]
-               ]
-           ]
-       ]
-   ];
+        [
+            'title' => '一级菜单',
+            'icon' => 'tools',
+            'sort' => 150,
+            'children' => [
+                [
+                    'title' => '二级菜单',
+                    'url' => '\XxxController@index',
+                ]
+            ]
+        ],
+        [
+            'title' => '一级菜单',
+            'icon' => 'tools',
+            'sort' => 150,
+            'children' => [
+                [
+                    'title' => '二级菜单',
+                    'children' => [
+                        [
+                            'title' => '三级菜单',
+                            'url' => '\XxxController@index',
+                        ],
+                        [
+                            'title' => '三级菜单',
+                            'url' => '\XxxController@index',
+                        ]
+                    ],
+                ]
+            ]
+        ],
+    ];
 });
 ```
 
@@ -185,13 +152,15 @@ ModStart系统按照如下相同的规则进行菜单合并：
 - 一级菜单（title+icon+sort）
 - 二级菜单（title）
 
-### 菜单使用规范
+## 后台导航菜单使用规范
 
 > 我们强烈建议您按照系统推荐的方式组织菜单避免用户安装多个模块后系统菜单变得混乱。
 
-- 大的业务功能模块可以插入一级菜单，用于管理模块涉及的业务功能
+- 独立的业务功能模块可以插入一级菜单，用于管理模块涉及的业务功能
 - 物料类、工具类的模块使用二级或三级菜单
 - 菜单由上至下应遵循使用频率递减的特性
+
+系统内置了如下的菜单大类组织方式，强烈建议您遵守如下约定。
 
 | 目录内容      | 排序（sort值） | 图标（icon） | 说明                             |
 | ------------- | -------------- | ------------ | -------------------------------- |
@@ -206,7 +175,7 @@ ModStart系统按照如下相同的规则进行菜单合并：
 | 功能设置      | 300            | tools        | 模块业务功能相关的设置           |
 | \|-- 用户设置 |                |              |                                  |
 | \|-- ...      |                |              |                                  |
-| 系统设置      | 400            | cog          | 技术功能相关设置                 |
+| 系统设置      | 400            | cog          | 技术相关配置                 |
 | \|-- 基础配置 |                |              |                                  |
 | \|-- 短信设置 |                |              |                                  |
 | \|-- 支付设置 |                |              |                                  |
@@ -220,16 +189,36 @@ ModStart系统按照如下相同的规则进行菜单合并：
 | 系统管理      | 700            | code-alt     | 系统功能管理（通常用于开发阶段） |
 | \|-- 模块管理 |                |              |                                  |
 
-## Api接口开发
+## 控制台命令
 
-前台代码 Routes、Controller 都应放在 `Api` 目录中。
+###  安装 modstart:module-install
 
-## OpenApi开放接口开发 
+```shell
+php artisan modstart:module-install {module} {--force}
+```
 
-前台代码 Routes、Controller 都应放在 `OpenApi` 目录中。
+### 卸载 modstart:module-uninstall
 
-## 开发技巧
+```shell
+php artisan modstart:module-uninstall {module}
+```
 
-### Api接口代码的复用
+### 启用 modstart:module-enable
 
-为了最大限度的敏捷开发，可以在 `Web`、`OpenApi`、`Admin` 中最大程度的复用 `Api` 代码。
+```shell
+php artisan modstart:module-enable {module}
+```
+
+### 禁用 modstart:module-disable
+
+```shell
+php artisan modstart:module-disable {module}
+```
+
+### 安装全部 modstart:module-install-all
+
+```shell
+php artisan modstart:module-install-all
+```
+
+一条命令安装全部模块，该命令会计算模块的依赖顺序，按照顺序依次安装。

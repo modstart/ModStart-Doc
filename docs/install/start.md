@@ -21,6 +21,10 @@
 2. 访问 http://yourdomain.com/install.php；
 3. 使用安装引导向导进行安装；
 
+<p>
+<img src="https://mz-assets.tecmz.com/data/image/2020/04/21/47617_sqcj_4993.jpg" />
+</p>
+
 ## 参考配置
 
 ### Nginx参考配置

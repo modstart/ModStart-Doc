@@ -1,20 +1,8 @@
 # 主题开发教程
 
-ModStart中的所有第三方统称为模块，模板主题也是一个模块，以 `CmsTheme` 开头，如 `CmsThemeBlue`、`CmsThemeGreen` 等。
+模板主题是一个模块，以 `CmsTheme` 开头，如 `CmsThemeBlue`、`CmsThemeGreen` 等。
 
-## 创建主题模块
 
-使用 [模块开发助手](https://modstart.com/m/ModuleDeveloper) 可以快速的帮您创建模板主题模块。
-
-通过 `系统管理 → 模块开发助手 → 新建CMS主题模块` 可以完成主题模块的快速创建。
-
-![](https://ms-assets.modstart.com/data/image/2021/12/20/15342_uw86_2468.jpg)
-
-![](https://ms-assets.modstart.com/data/image/2021/12/20/15343_m865_7840.jpg)
-
-![](https://ms-assets.modstart.com/data/image/2021/12/20/15344_9e3n_5190.jpg)
-
-如果您需要手动创建模板主题模块，请参照 [CMS开发演示模板](https://modstart.com/m/CmsThemeDemo)  。
 
 ## 主题模块结构
 

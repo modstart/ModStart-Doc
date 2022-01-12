@@ -1,53 +1,5 @@
 # 数据表格
 
-
-## 基本使用
-
-`ModStart\Grid\Grid` 类用于生成基于数据模型的表格
-
-先来个例子，数据库中有 `news` 表
-
-```sql
-CREATE TABLE `news` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `cover` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `summary` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `content` text,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-```
-
-下面的代码可以生成表 `news` 的数据表格
-
-```php
-<?php
-namespace App\Admin\Controller;
-
-use Illuminate\Routing\Controller;
-use ModStart\Grid\Grid;
-
-class NewsController extends Controller
-{
-    protected function grid()
-    {
-        $grid = new Grid('news', function (Grid $grid) {
-            $grid->id('id','ID');
-            $grid->text('title', '名称');
-            $grid->image('cover', '封面');
-            $grid->textarea('summary', '摘要');
-            $grid->richHtml('content', '内容');
-            $grid->display('created_at', '创建时间');
-            $grid->display('updated_at', '更新时间');
-        });
-        $grid->title('新闻管理');
-        return $grid;
-    }
-}
-```
-
 ## 字段支持
 
 ### 显示 display

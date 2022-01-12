@@ -16,7 +16,7 @@ module.exports = {
         '/': {
             lang: '简体中文',
             title: 'ModStart开发者文档',
-            description: '基于Laravel的极速开发框架'
+            description: '基于Laravel的模块化开发框架'
         },
         // '/en/': {
         //     lang: 'English',
@@ -31,7 +31,7 @@ module.exports = {
                 link: "https://modstart.com",
             },
             {
-                text: "安装升级",
+                text: "安装",
                 items: [
                     {text: '系统介绍', link: '/guide.html'},
                     {text: '安装说明', link: '/install/start.html'},
@@ -44,11 +44,20 @@ module.exports = {
                 ]
             },
             {
-                text: "开发手册",
+                text: "入门教程",
+                items: [
+                    {text: '开发必看', link: '/tutorial/arch.html'},
+                    {text: '应用入门教程', link: '/tutorial/app.html'},
+                    {text: '模块入门教程', link: '/tutorial/module.html'},
+                    {text: 'CMS主题入门教程', link: '/tutorial/cms_theme.html'},
+                    {text: '模块发布到市场', link: '/tutorial/module_publish.html'},
+                ],
+            },
+            {
+                text: "参考手册",
                 items: [
                     {text: '系统架构', link: '/manual/arch.html'},
-                    {text: '模块开发', link: '/manual/module.html'},
-                    {text: '快速CRUD', link: '/manual/crud.html'},
+                    {text: '模块架构', link: '/manual/module.html'},
                     {text: '数据表格', link: '/manual/grid.html'},
                     {text: '数据表单', link: '/manual/form.html'},
                     {text: '数据详情', link: '/manual/detail.html'},
@@ -57,17 +66,14 @@ module.exports = {
                     {text: '多语言I18N', link: '/manual/i18n.html'},
                     {text: 'Hook', link: '/manual/hook.html'},
                     {text: '调度和队列', link: '/manual/schedule.html'},
-                ],
-            },
-            {
-                text: "CMS教程",
-                items: [
-                    {text: '主题开发教程', link: '/cms/theme.html'},
-                    {text: 'Blade模板教程', link: '/cms/blade.html'},
+                    {text: '快速CRUD', link: '/manual/crud.html'},
+                    {text: 'Blade模板', link: '/manual/blade.html'},
+                    {text: "CMS主题", link: "/manual/cms_theme.html"},
+                    {text: "持续集成", link: "/manual/deploy.html"}
                 ]
             },
             {
-                text: "常用工具",
+                text: "工具",
                 items: [
                     {text: "开发者助手", link: "/tools/module-developer.html"},
                     {text: "工具箱", link: "https://tools.tecmz.com"}

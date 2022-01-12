@@ -72,15 +72,22 @@ class NewsController extends Controller
 ```
 
 <p align="center" style="font-size:30px;font-weight:bold;">
-    模块市场，共建共享
+    模块市场
 </p>
 
 
-<p align="center"><img style="max-width:800px;width:100%;" src="https://ms-assets.modstart.com/data/image/2021/09/25/30055_qizj_4881.gif" /></p>
+<p align="center"><img style="max-width:800px;width:100%;" src="https://ms-assets.modstart.com/data/image/2022/01/12/21242_me7h_4616.jpg" /></p>
 
 
 <p align="center" style="font-size:30px;font-weight:bold;">
-    加入我们，共同进步
+    交流学习
+</p>
+
+<p align="center">
+	QQ群：
+	<a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=JP5GySRSCM8BUVoIGwfXF_bCe6gPajEb&jump_from=webapi">
+		467107293
+	</a>
 </p>
 
 <p align="center" class="text-align:center;">
