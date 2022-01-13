@@ -191,34 +191,119 @@ ModStart系统按照如下相同的规则进行菜单合并：
 
 ## 控制台命令
 
-###  安装 modstart:module-install
+###  安装 module-install
 
 ```shell
 php artisan modstart:module-install {module} {--force}
 ```
 
-### 卸载 modstart:module-uninstall
+### 卸载 module-uninstall
 
 ```shell
 php artisan modstart:module-uninstall {module}
 ```
 
-### 启用 modstart:module-enable
+### 启用 module-enable
 
 ```shell
 php artisan modstart:module-enable {module}
 ```
 
-### 禁用 modstart:module-disable
+### 禁用 module-disable
 
 ```shell
 php artisan modstart:module-disable {module}
 ```
 
-### 安装全部 modstart:module-install-all
+### 安装全部 module-install-all
 
 ```shell
 php artisan modstart:module-install-all
 ```
 
 一条命令安装全部模块，该命令会计算模块的依赖顺序，按照顺序依次安装。
+
+## 接口文档注解
+
+使用注解可以在模块打包时生成接口文档，一个接口文档注解示例如下
+
+```php
+/**
+ * @Api 新闻
+ */
+class NewsController extends Controller
+{
+  /**
+   * @Api 新闻分页
+   * @ApiBodyParam search.categoryId int 新闻分类ID
+   * @ApiResponseData {
+   *  "total": 1,
+   *  "page" : 1,
+   *  "pageSize": 10,
+   *  "records": [
+   *      {
+   *        "id":1,
+   *        "categoryId":1,
+   *        "title":"标题",
+   *        "summary":"摘要",
+   *        "content":"内容"
+   *      }
+   *  ]
+   * }
+   */
+  public function paginate()
+  {
+     // ...
+  }
+}
+```
+
+### 类注解
+
+- 接口分组：`@Api 分组`
+
+### 方法注解
+
+- 接口名称：`@Api 名称`
+- 接口说明：`@ApiDesc 接口说明`
+- 接口请求方式：`@ApiMethod post|get`
+- 接口请求格式：`@ApiDataType json|formData`
+- 接口请求头：`@ApiHeadParam api-token string required 参数说明`
+- 接口请求Body参数：`@ApiBodyParam bizId int required 企业ID`
+- 接口请求Query参数：`@ApiQueryParam bizId int required 企业ID`
+- 接口返回Code特殊值：`@ApiResponseCode 10000 用户未登录`
+- 接口返回Data内容格式：`@ApiResponseData { }`
+
+## 工具类注解
+
+使用注解可以在模块打包时生成工具类使用文档，一个工具类文档注解示例如下
+
+```php
+/**
+ * Class MCms
+ *
+ * @Util CMS操作
+ */
+class TestUtil
+{
+  /**
+   * @Util 获取栏目
+   * @param $catUrl string 栏目URL
+   * @return array
+   */
+  public static function getCatByUrl($catUrl)
+  {
+     // ...
+  }
+}
+```
+
+### 类注解
+
+- 工具类分组：`@Util 分组`
+
+### 方法注解
+
+- 名称：`@Util 名称`
+- 参数：`@param $name string 说明`
+- 返回：`@return array`
