@@ -69,7 +69,8 @@ module.exports = {
                     {text: '快速CRUD', link: '/manual/crud.html'},
                     {text: 'Blade模板', link: '/manual/blade.html'},
                     {text: "CMS主题", link: "/manual/cms_theme.html"},
-                    {text: "持续集成", link: "/manual/deploy.html"}
+                    {text: "持续集成", link: "/manual/deploy.html"},
+                    {text: "性能报告", link: "/manual/performance.html"}
                 ]
             },
             {
