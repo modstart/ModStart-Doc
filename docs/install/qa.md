@@ -3,7 +3,7 @@
 ## Q：安装模块后系统报错打不开
 
 - 第1步，删除安装的模块 `module/Xxx` 目录，尝试刷新页面打开，如果打不开请执行第2步
-- 第2步，清除缓存（删除 `bootstrap/cache/` 和 `storage/framework/cache` 目录中的所有文件，注意不要删除目录本身），完成后重试
+- 第2步，清除缓存（删除 `bootstrap/cache/` 和 `storage/framework/cache/` 目录中的所有文件，注意不要删除目录本身），完成后重试
 
 ## Q：系统后台一键升级后系统报错
 
@@ -113,14 +113,31 @@ Stack trace:
 - 第1步，打开调试日志（设置 .env 文件中 APP_DEBUG=true）
 - 第2步，直接访问页面查看错误信息，进行排查
 
+## Q：网站加载速度很慢
 
+使用现代化浏览器（推荐 Chrome ），在页面右击，点击 `审查元素`，切换到 `Network` ，查看导致页面加载慢的请求。
 
+- 如果是静态资源（ js, css 等文件 ）加载速度慢，需要考虑增加服务器带宽或者使用 CDN 等提高静态资源访问速度。
+- 如果是服务器的接口请求慢，可能是由于服务器配置、数据库连接速度等原因导致，需要咨询专业技术人员进行分析处理。
 
+![](https://ms-assets.modstart.com/data/image/2022/01/26/68498_dvjf_2408.jpg)
 
+## Q：迁移环境后出现访问500错误
 
+出现类似如下错误
 
+```
+Failed opening required 'xxx/module/Vendor/Web/routes.php' **
+Stack trace:
+#0 {main}
+```
 
+系统在运行时为了提高性能会缓存部分文件路径，在新环境如果路径不一致会导致缓存文件加载失败。只需要清除缓存即可，步骤如下：
 
+Tips：删除目录中的所有文件，注意不要删除目录本身，完成后重试
+
+- 删除 `bootstrap/cache/` 中的所有文件
+- 删除 `storage/framework/cache/` 中的所有文件
 
 
 

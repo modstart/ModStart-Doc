@@ -40,6 +40,29 @@ ModStart的启动通过 `ModStart\ModStartServiceProvider` 类来管理，具体
 - `app/OpenApi/routes.php`：系统应用OpenApi开放接口路由
 
 
+
+## Composer安装第三方依赖包
+
+现支持 PHP5.6、PHP7.0，部分依赖有改造，如需手动安装 Composer 第三方包，需要将 ModStart 私有源加入到 `composer.json` 中，避免 ModStart 更新时的私有包获取失败。
+
+```json
+{
+  // ...
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://modstart.com/composer"
+    }
+  ]
+  // ...
+}
+```
+
+> ModStartCMS 默认已添加该私有源
+
+
+
+
 ## 名词解释
 
 | 名词 | 含义 | 备注 |

@@ -517,3 +517,12 @@ return [
 ];
 ```
 
+## 常用问题
+
+### 页面标题、关键词、描述调用
+
+```html
+@section('pageTitle')页面标题@endsection
+@section('pageKeywords')页面关键词@endsection
+@section('pageDescription')页面关键词@endsection
+```
