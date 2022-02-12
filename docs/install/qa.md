@@ -163,8 +163,44 @@ Tips：删除目录中的所有文件，注意不要删除目录本身，完成�
 - 删除 `storage/framework/cache/` 中的所有文件
 
 
+## Q：模块市场出现502请求错误
 
+访问模块市场提示「请求出现错误」，同时接口 `后台/module_store/all` 返回502错误。
 
+如果您的其他页面访问正常，通常还会看到 PHP-PMF 的错误日志
+
+```
+[error] 2874786#0: *8565 recv() failed (104: Connection reset by peer) 
+while reading response header from upstream ***
+```
+
+出现该错误，可能的原因有。
+
+**（1）TCP/IP问题**
+
+主线现象是：在服务器完成下载内容之前连接被关闭，可能是网络问题，有可能是
+
+- 最大传输单元问题
+- 防火墙问题
+- 未知网络问题
+
+**（2）内核Bug**
+
+请注意，在v2.6.17之后的一些Linux内核上，TCP窗口扩展存在一些问题，更多参考
+
+- [https://bugs.launchpad.net/ubuntu/+source/linux-source-2.6.17/+bug/59331](https://bugs.launchpad.net/ubuntu/+source/linux-source-2.6.17/+bug/59331)
+- [https://bugs.launchpad.net/ubuntu/+source/linux-source-2.6.20/+bug/89160](https://bugs.launchpad.net/ubuntu/+source/linux-source-2.6.20/+bug/89160)
+
+**（3）PHP 的 CURL 扩展 Bug**
+
+这些Bug可能是
+
+- [https://bugs.php.net/bug.php?id=52828](https://bugs.php.net/bug.php?id=52828)
+- [https://bugs.php.net/bug.php?id=52827](https://bugs.php.net/bug.php?id=52827)
+- [https://bugs.php.net/bug.php?id=52202](https://bugs.php.net/bug.php?id=52202)
+- [https://bugs.php.net/bug.php?id=50410](https://bugs.php.net/bug.php?id=50410)
+
+我们曾经排查过几个类似问题，最终无果。该问题的影响因素较多，遇到该问题后，我们建议您更换 PHP 版本。
 
 
 

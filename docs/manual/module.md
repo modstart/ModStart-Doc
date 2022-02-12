@@ -32,6 +32,8 @@ SomeName
   "name": "Demo",
   // 模块文字说明
   "title": "开发示例程序",
+  // 兼容环境，可选值为 laravel5、laravel9 ，默认为 laravel5
+  "env": [ "laravel5", "laravel9" ],
   // 模块类型，可以包含多个，目前支持以下值
   // PC:        电脑版
   // Mobile:    手机H5

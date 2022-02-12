@@ -30,5 +30,27 @@ ModStart 基于原生 Laravel 开发，独创了方便易扩展的模块开发�
 >
 > 规划开发好的模块，可以发布到模块市场上供大家付费/免费使用，共享技术成果。
 
+## 模块开发兼容性问题
 
+为了同时兼容 Laravel 5.1 和 Laravel 9.0，PHP 写法需要同时兼容 PHP 5.x 和 PHP 8.x 的语法。除此之外，一直的框架兼容性问题如下。
 
+### Blade 输出变量
+
+```PHP
+✅ 输出变量或默认值需要
+{{ empty($param) ? '默认值' : $param }}
+
+❌ 以下写法不兼容
+{{ $param or '默认值' }} → 只兼容 Laravel 5.1
+```
+
+### Event 事件触发
+
+```PHP
+✅ 封装的兼容性事件触发
+\ModStart\Core\Util\EventUtil::fire( $event )
+
+❌ 以下写法不兼容
+Event::fire( $event )
+Event::dispatch( event )
+```

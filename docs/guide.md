@@ -13,25 +13,30 @@
     <img alt="License Apache2.0" src="https://img.shields.io/badge/License-Apache2.0-blue">
   </a>
   <a href="https://github.com/modstart/ModStartCMS" target="_blank">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/modstart/ModStartCMS">
+    <img alt="GitHub last release" src="https://img.shields.io/github/v/release/modstart/ModStartCMS">
   </a>
   <a href="https://github.com/modstart/ModStartCMS" target="_blank">
-    <img alt="GitHub last release" src="https://img.shields.io/github/v/release/modstart/ModStartCMS">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/modstart/ModStartCMS">
   </a>
   <br />
   <a href="https://github.com/modstart/ModStartCMS" target="_blank">
     <img alt="Laravel" src="https://img.shields.io/badge/Framework-ModStart-blue">
   </a>
   <a href="https://github.com/modstart/ModStartCMS" target="_blank">
-    <img alt="Laravel" src="https://img.shields.io/badge/PHP-Laravel-red">
+    <img alt="Laravel" src="https://img.shields.io/badge/PHP-5.6/7.0/8.x-red">
   </a>
   <a href="https://github.com/modstart/ModStartCMS" target="_blank">
-    <img alt="Laravel" src="https://img.shields.io/badge/JS-Vue-green">
+    <img alt="Laravel" src="https://img.shields.io/badge/Laravel-5.1/9.0-red">
+  </a>
+  <a href="https://github.com/modstart/ModStartCMS" target="_blank">
+    <img alt="Laravel" src="https://img.shields.io/badge/JS-Vue/ElementUI-green">
   </a>
 </p>
 
 
-# ModStart是基于Laravel的模块化极速开发框架
+# ModStart 是基于 Laravel 的模块化开发框架
+
+
 
 
 ##  🔥 功能一览
@@ -74,12 +79,16 @@
   - [网盘系统](https://modstart.com/m/Pan)
   - [微信公众号管理系统](https://modstart.com/m/WechatMP)
   - [在线客服系统](https://modstart.com/m/LiveChat)
+  - [图床系统](https://modstart.com/m/PicUploader)
+  - [通用CMS系统](https://modstart.com/m/Cms)
+
+
 
 ##  💡 系统简介
 
 `ModStart` 是一个基于 `Laravel` 模块化极速开发框架。模块市场拥有丰富的功能应用，支持后台一键快速安装，让开发者能快的实现业务功能开发。 
 
-系统完全开源，基于 Apache 2.0 开源协议，**免费且不限制商业使用**。
+系统完全开源，基于 **Apache 2.0** 开源协议，**免费且不限制商业使用**。
 
 
 <img src="https://ms-assets.modstart.com/data/image/2021/11/07/46017_dv5r_7358.jpg" alt="功能架构" />
@@ -95,8 +104,8 @@
 - [Laravel](https://laravel.com/)
 - [Vue](https://vuejs.org/)
 - [Element UI](https://element.eleme.io/)
-- [LayUI](https://github.com/sentsin/layui)
 - [jQuery](http://jquery.com)
+
 
 
 ##  💥 系统特性
@@ -144,12 +153,21 @@
 
 ### 环境要求
 
-- `PHP` `5.6 或 7.0`
-- `MySQL` `>=5.0`
-- `PHP Extension`：`Fileinfo`
-- `Apache/Nginx`
 
-> 强力推荐使用PHP 5.6 或 7.0 版本，系统稳定性最好
+- **Laravel 5.1 版本**
+  - `PHP 5.6` `PHP 7.0`
+  - `MySQL` `>=5.0`
+  - `PHP Extension`：`Fileinfo`
+  - `Apache/Nginx`
+
+
+- **Laravel 9.0 版本**
+  - `PHP 8.0` `PHP 8.1`
+  - `MySQL` `>=5.0`
+  - `PHP Extension`：`Fileinfo`
+  - `Apache/Nginx`
+
+> 我们的测试基于 PHP 的 5.6 / 7.0 / 8.0 / 8.1 版本，系统稳定性最好
 
 ### 安装说明
 
@@ -257,11 +275,11 @@ AdminMenu::register(function () {
 
 ## 📋 常见问题
 
-我们列举了常见问题，请查看官方标准指南
+我们列举了常见问题，遇到问题请先参考常见问题
 
-[https://modstart.com/doc/install/qa.html](https://modstart.com/doc/install/qa.html)
+- [https://modstart.com/doc/install/qa.html](https://modstart.com/doc/install/qa.html)
 
 如有其他问题推荐使用官方讨论交流群或在线讨论
 
-[https://modstart.com/forum](https://modstart.com/forum)
+- [https://modstart.com/forum](https://modstart.com/forum)
 
