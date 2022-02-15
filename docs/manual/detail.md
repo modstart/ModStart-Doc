@@ -1,6 +1,42 @@
 # 数据展示
 
 
+## 快速入门
+
+`ModStart\Detail\Detail` 类用于快速生成详情页面，参照例子 [数据表格→快速入门](/manual/grid.html#快速入门)
+
+可以通过如下代码快速定义个数据表单
+
+```php
+return Detail::make('blog', function (Detail $detail) {
+    // 定义显示ID列
+    $detail->id('id', 'ID');
+    // 定义标题字段，格式为单行文本
+    $detail->text('title', '标题');
+    // 定义封面字段，格式为单张图片
+    $detail->image('cover', '封面');
+    // 定义摘要字段，格式为多行文本
+    $detail->textarea('summary', '摘要');
+    // 定义内容字段，格式为富文本
+    $detail->richHtml('content', '内容');
+    // 定义创建时间字段，格式为简单显示
+    $detail->display('created_at', '创建时间');
+    // 定义更新时间字段，格式为简单显示
+    $detail->display('updated_at', '更新时间');
+});
+```
+
+## 获取当前模型数据
+
+在闭包内可以获取到当前模型的数据
+
+```php
+return Detail::make('blog', function (Detail $detail) {
+    dd($detail->item());
+});
+```
+
+
 
 ## 字段支持
 

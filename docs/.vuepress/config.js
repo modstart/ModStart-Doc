@@ -8,7 +8,7 @@ module.exports = {
 (function() {
   var hm = document.createElement("script");
   hm.src = "https://hm.baidu.com/hm.js?5f8b495b287894a451c761c963e6e34a";
-  var s = document.getElementsByTagName("script")[0]; 
+  var s = document.getElementsByTagName("script")[0];
   s.parentNode.insertBefore(hm, s);
 })();`],
     ],
@@ -31,7 +31,7 @@ module.exports = {
                 link: "https://modstart.com",
             },
             {
-                text: "安装",
+                text: "快速安装",
                 items: [
                     {text: '系统介绍', link: '/guide.html'},
                     {text: '安装说明', link: '/install/start.html'},
@@ -70,14 +70,17 @@ module.exports = {
                     {text: 'Blade模板', link: '/manual/blade.html'},
                     {text: "CMS主题", link: "/manual/cms_theme.html"},
                     {text: "持续集成", link: "/manual/deploy.html"},
-                    {text: "性能报告", link: "/manual/performance.html"}
+                    {text: "视图页面", link: "/manual/view.html"},
+                    {text: "JavaScript库", link: "/manual/javascript.html"},
+                    {text: "性能报告", link: "/manual/performance.html"},
                 ]
             },
             {
-                text: "工具",
+                text: "运维工具",
                 items: [
+                    {text: "Linux运维", link: "/devops/linux.html"},
                     {text: "开发者助手", link: "/tools/module-developer.html"},
-                    {text: "工具箱", link: "https://tools.tecmz.com"}
+                    {text: "工具箱", link: "https://tools.tecmz.com"},
                 ],
             },
             {

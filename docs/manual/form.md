@@ -1,5 +1,36 @@
 # 数据表单
 
+## 快速入门
+
+`ModStart\Form\Form` 类用于快速生成表单页面，参照例子 [数据表格→快速入门](/manual/grid.html#快速入门)
+
+可以通过如下代码快速定义个数据表单
+
+```php
+return Form::make('blog', function (Form $form) {
+    // 定义标题字段，格式为单行文本
+    $form->text('title', '标题');
+    // 定义封面字段，格式为单张图片
+    $form->image('cover', '封面');
+    // 定义摘要字段，格式为多行文本
+    $form->textarea('summary', '摘要');
+    // 定义内容字段，格式为富文本
+    $form->richHtml('content', '内容');
+});
+```
+
+## 获取当前模型数据
+
+在闭包内可以获取到当前模型的数据
+
+```php
+return Form::make('blog', function (Detail $detail) {
+    dd($detail->item());
+});
+```
+
+
+
 ## 字段支持
 
 ### 显示 display

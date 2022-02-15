@@ -1,5 +1,130 @@
 # 数据表格
 
+## 快速入门
+
+`ModStart\Grid\Grid` 类用于生成基于数据模型的表格，先来个例子，数据库中有 `blog` 表
+
+```sql
+CREATE TABLE `blog` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(200) DEFAULT NULL,
+  `cover` varchar(200) DEFAULT NULL,
+  `summary` varchar(200) DEFAULT NULL,
+  `content` text,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+```
+
+使用下面的代码可以生成 `blog` 的数据表格。
+
+```php
+<?php
+namespace App\Admin\Controller;
+
+use Illuminate\Routing\Controller;
+use ModStart\Admin\Concern\HasAdminDetail;
+use ModStart\Admin\Concern\HasAdminForm;
+use ModStart\Admin\Concern\HasAdminGrid;
+use ModStart\Detail\Detail;
+use ModStart\Form\Form;
+use ModStart\Grid\Grid;
+use ModStart\Grid\GridFilter;
+
+class BlogController extends Controller
+{
+    // 设置当前 Controller 包含 Grid、Form、Detail 三种特性
+    use HasAdminGrid;
+    use HasAdminForm;
+    use HasAdminDetail;
+  
+    // 定义当前页面主标题
+    public $pageTitle = '博客';
+
+    public function grid()
+    {
+        $grid = Grid::make('blog');
+        // 定义显示ID列
+        $grid->id('id', 'ID');
+        // 定义标题字段，格式为单行文本
+        $grid->text('title', '标题');
+        // 定义封面字段，格式为单张图片
+        $grid->image('cover', '封面');
+        // 定义摘要字段，格式为多行文本
+        $grid->textarea('summary', '摘要');
+        // 定义内容字段，格式为富文本
+        $grid->richHtml('content', '内容');
+        // 定义创建时间字段，格式为简单显示
+        $grid->display('created_at', '创建时间');
+        // 定义搜索过滤字段
+        $grid->gridFilter(function (GridFilter $filter) {
+            // 定义ID可搜索
+            $filter->eq('id', 'ID');
+            // 定义标题可模糊查找
+            $filter->like('title', '标题');
+        });
+        // 定义整体增删改查标题为「博客」
+        $grid->title('博客');
+        return $grid;
+    }
+
+    public function form()
+    {
+        return Form::make('blog', function (Form $form) {
+            // 定义标题字段，格式为单行文本
+            $form->text('title', '标题');
+            // 定义封面字段，格式为单张图片
+            $form->image('cover', '封面');
+            // 定义摘要字段，格式为多行文本
+            $form->textarea('summary', '摘要');
+            // 定义内容字段，格式为富文本
+            $form->richHtml('content', '内容');
+        });
+    }
+
+    public function detail()
+    {
+        return Detail::make('blog', function (Detail $detail) {
+            // 定义显示ID列
+            $detail->id('id', 'ID');
+            // 定义标题字段，格式为单行文本
+            $detail->text('title', '标题');
+            // 定义封面字段，格式为单张图片
+            $detail->image('cover', '封面');
+            // 定义摘要字段，格式为多行文本
+            $detail->textarea('summary', '摘要');
+            // 定义内容字段，格式为富文本
+            $detail->richHtml('content', '内容');
+            // 定义创建时间字段，格式为简单显示
+            $detail->display('created_at', '创建时间');
+            // 定义更新时间字段，格式为简单显示
+            $detail->display('updated_at', '更新时间');
+        });
+    }
+}
+```
+
+定义Routes
+
+```php
+<?php
+Route::group(
+    [
+        'prefix' => env('ADMIN_PATH', '/admin/'),
+        'middleware' => ['admin.bootstrap', 'admin.auth'],
+        'namespace' => '\App\Admin\Controller',
+    ], function () {
+    Route::match(['get', 'post'], 'blog', 'BlogController@index');
+    Route::match(['get', 'post'], 'blog/add', 'BlogController@add');
+    Route::match(['get', 'post'], 'blog/edit', 'BlogController@edit');
+    Route::match(['get', 'post'], 'blog/delete', 'BlogController@delete');
+    Route::match(['get', 'post'], 'blog/show', 'BlogController@show');
+});
+```
+
+
+
 ## 字段支持
 
 ### 显示 display
