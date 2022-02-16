@@ -202,5 +202,22 @@ while reading response header from upstream ***
 
 我们曾经排查过几个类似问题，最终无果。该问题的影响因素较多，遇到该问题后，我们建议您更换 PHP 版本。
 
+## Q：忘记后台用户或密码怎么办？
 
+为了安全起见，系统不支持后台用户密码的找回。如果忘记后台管理密码，只需要使用专业数据库工具修改后台用户表 `admin_user` 即可。
+
+修改对应的用户 `password` 和 `passwordSalt` 字段。
+
+- `password`: `3c20ecadec461ce77179008a44850334`
+- `passwordSalt`: `KUBg1mMi5I`
+
+对应的登录密码为：`123456`
+
+SQL参考
+
+```sql
+UPDATE admin_user 
+    SET password='3c20ecadec461ce77179008a44850334',passwordSalt='KUBg1mMi5I'
+    WHERE username = '用户名';
+```
 
