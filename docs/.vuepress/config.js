@@ -85,7 +85,10 @@ module.exports = {
             },
             {
                 text: "更新日志",
-                link: "/change-log.html",
+                items: [
+                    {text: "更新日志", link: "/change-log.html"},
+                    {text: "Laravel9.0版", link: "/change-log-cms9.html"},
+                ],
             },
         ],
         sidebar: 'auto',

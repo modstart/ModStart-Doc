@@ -20,20 +20,23 @@ footer: Copyright © 2016-2022 ModStart
     <img alt="License Apache2.0" src="https://img.shields.io/badge/License-Apache2.0-blue">
   </a>
   <a href="https://github.com/modstart/ModStartCMS" target="_blank">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/modstart/ModStartCMS">
+    <img alt="GitHub last release" src="https://img.shields.io/github/v/release/modstart/ModStartCMS">
   </a>
   <a href="https://github.com/modstart/ModStartCMS" target="_blank">
-    <img alt="GitHub last release" src="https://img.shields.io/github/v/release/modstart/ModStartCMS">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/modstart/ModStartCMS">
   </a>
   <br />
   <a href="https://github.com/modstart/ModStartCMS" target="_blank">
     <img alt="Laravel" src="https://img.shields.io/badge/Framework-ModStart-blue">
   </a>
   <a href="https://github.com/modstart/ModStartCMS" target="_blank">
-    <img alt="Laravel" src="https://img.shields.io/badge/PHP-Laravel-red">
+    <img alt="Laravel" src="https://img.shields.io/badge/PHP-5.6/7.0/8.x-red">
   </a>
   <a href="https://github.com/modstart/ModStartCMS" target="_blank">
-    <img alt="Laravel" src="https://img.shields.io/badge/JS-Vue-green">
+    <img alt="Laravel" src="https://img.shields.io/badge/Laravel-5.1/9.0-red">
+  </a>
+  <a href="https://github.com/modstart/ModStartCMS" target="_blank">
+    <img alt="Laravel" src="https://img.shields.io/badge/JS-Vue/ElementUI-green">
   </a>
 </p>
 
