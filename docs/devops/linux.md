@@ -53,3 +53,7 @@ swapoff /swap
 ```
 
 关闭swap后删除对应的swap文件即可删除swap交换区，如需要调整swap交换区大小，从第一部开始重新创建即可。
+
+## 工具推荐
+
+- `pt-online-schema-change`：MySQL 在线 DDL 工具

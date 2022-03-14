@@ -1,27 +1,27 @@
 # 模块架构
 
+
+
 ## 模块目录介绍
 
-```
-SomeName
-├── Admin                                → 后台管理
-├── Api                                  → API接口
-├── Constant                             → 常量
-├── Core                                 → 核心资源
-│     └── ModuleServiceProvider.php      → 模块核心ServiceProvider，会自动被系统加载
-├── Docs                                 → 模块文档目录
-│     ├── doc                            → 模块使用文档
-│     ├── module                         → 模块说明文档
-│     └── release                        → 模块Release日志
-├── Migrate                              → 模块数据库迁移文件
-├── Util                                 → 模块工具包
-├── View                                 → 模块视图
-├── Web                                  → 模块前台 
-├── config.json                          → 模块配置文件
-└── resources                            → 模块其他资源文件
-```
+| 目录                             | 说明                                               |
+| -------------------------------- | -------------------------------------------------- |
+| `Admin`                          | 后台管理功能组                                     |
+| `Api`                            | API接口功能组                                      |
+| `Asset/` | 模块静态文件，模块安装时会被自动发布到 `public/vendor/Xxx` 目录中 |
+| `Core/ModuleServiceProvider.php` | 模块核心提供者，会被自动加载                       |
+| `Docs`                           |                                                    |
+| `Docs/doc/`                      | 模块帮助文档                                       |
+| `Docs/module/`                   | 模块说明文档                                       |
+| `Docs/release.md`                | 模块更新日志                                       |
+| `Migrate`                        | 模块数据库迁移文件                                 |
+| `View`                           | 模块视图文件，可以通过 `module::Xxx.View.xxx` 调用 |
+|  `Web` | Web前台功能组|
+|  `config.json` | 模块配置文件 |
 
-## 配置文件 config.json
+
+
+### 模块配置文件 config.json
 
 配置文件是一个合法的JSON，请勿在JSON中包含注释，以下为了参数含义会在JSON中包含注释
 
@@ -107,6 +107,62 @@ SomeName
 }
 ```
 
+
+
+### 模块帮助文档 Docs/doc/
+
+模块帮助文档位于 `Docs/doc` 目录中，每个帮助文档保存为一个 `*.md` Markdown 文档，格式如下：
+
+```md
+# 帮助文档标题
+
+---
+
+帮助文档内容
+```
+
+使用模块开发助手后台上传模块时，会自动解析 `Docs/doc` 目录中的帮助文档并上传关联到模块中。
+
+> 帮助文档使用帮助文档的文件名作为唯一标识，如果有更新会自动更新发布。
+
+
+
+### 模块说明文档 content.md
+
+文档位置位于 `Docs/module/content.md`
+
+模块帮助文档位于 `Docs/module/content.md` ，使用模块开发助手后台上传模块时，会自动更新到模块说明文档中。
+
+
+
+### 模块更新日志文档 release.md
+
+文档位于 `Docs/release.md`
+
+模块格式严格按照如下，使用模块开发助手后台上传模块时，会自动更新到模块发布更新日志中。
+
+```md
+## 1.1.0 版本发布说明
+
+- 新增：XXX功能
+- 新增：XXX功能
+- 优化：XXX功能
+- 修复：XXX功能
+
+---
+
+## 1.0.0 版本发布说明
+
+- 新增：XXX功能
+- 新增：XXX功能
+- 优化：XXX功能
+- 修复：XXX功能
+```
+
+> 多个版本使用 `---` 分割。
+
+
+
 ## 后台导航菜单注册
 
 在 `Core/ModuleServiceProvider.php` 中配置，通过如下方式注册菜单：
@@ -154,6 +210,8 @@ ModStart系统按照如下相同的规则进行菜单合并：
 - 一级菜单（title+icon+sort）
 - 二级菜单（title）
 
+
+
 ## 后台导航菜单使用规范
 
 > 我们强烈建议您按照系统推荐的方式组织菜单避免用户安装多个模块后系统菜单变得混乱。
@@ -191,6 +249,8 @@ ModStart系统按照如下相同的规则进行菜单合并：
 | 系统管理      | 700            | code-alt     | 系统功能管理（通常用于开发阶段） |
 | \|-- 模块管理 |                |              |                                  |
 
+
+
 ## 控制台命令
 
 ###  安装 module-install
@@ -224,6 +284,8 @@ php artisan modstart:module-install-all
 ```
 
 一条命令安装全部模块，该命令会计算模块的依赖顺序，按照顺序依次安装。
+
+
 
 ## 接口文档注解
 
@@ -275,6 +337,8 @@ class NewsController extends Controller
 - 接口请求Query参数：`@ApiQueryParam bizId int required 企业ID`
 - 接口返回Code特殊值：`@ApiResponseCode 10000 用户未登录`
 - 接口返回Data内容格式：`@ApiResponseData { }`
+
+
 
 ## 工具类注解
 

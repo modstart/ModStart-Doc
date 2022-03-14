@@ -125,234 +125,341 @@ Route::group(
 
 
 
+## 数据表格仓库
+
+### 使用MySQL表名
+
+使用数据表名称创建数据表格
+
+```php
+$grid = Grid::make('blog');
+```
+
+### 使用数据模型类
+
+使用数据模型类来创建数据表格
+
+```php
+$grid = Grid::make(Blog::class);
+```
+
+其中 `Blog` 定义如下
+
+```php
+<?php
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Blog extends Model
+{
+    protected $table = 'blog';
+}
+```
+
+
+
+## 列的配置和使用
+
+一个基础列
+
+```php
+$grid->display('field','名称');
+```
+
+设定宽度
+
+```php
+$grid->display('field','名称')->width(100);
+```
+
+自定义渲染
+
+```php
+$grid->display('field','自定义列')->hookRendering(function (AbstractField $field, $item, $index) {
+    return '<span>自定义内容：'.$item->field.'</span>';
+});
+```
+
+
+
+## 行的配置和使用
+
+数据表格行默认有 3 个操作：`编辑`、`删除`、`查看`，可以通过如下方式关闭。
+
+```php
+// 关闭编辑
+$grid->canEdit(false);
+// 关闭删除
+$grid->canDelete(false);
+// 关闭查看
+$grid->canShow(false);
+// 一键关闭编辑、删除、查看
+$grid->disableCUD();
+```
+
+自定义渲染行操作
+
+```php
+$grid->hookItemOperateRendering(function (ItemOperate $itemOperate) {
+    // 当前行数据
+    $item = $itemOperate->item();
+    // 在默认操作之前增加操作
+    $itemOperate->prepend('<a href="#">其他操作</a>');
+    // 在默认操作之后增加操作
+    $itemOperate->push('<a href="#">其他操作</a>');
+});
+```
+
+## 筛选条件的配置
+
+定义表格筛选条件
+
+```php
+$grid->gridFilter(function (GridFilter $filter) {
+    $filter->eq('id', 'ID');
+    $filter->like('title', '标题');
+})
+```
+
+## 工具栏配置使用
+
+在右上角工具栏增加操作
+
+```php
+$grid->gridOperateAppend('<a href="#" class="btn btn-primary">操作</a>');
+```
+
+
+
 ## 字段支持
 
 ### 显示 display
 
 ```php
-$builder->display('field','名称');
+$grid->display('field','名称');
 ```
 
 ### 单行文本 text
 
 ```php
-$builder->text('field', '名称');
+$grid->text('field', '名称');
 ```
 
 ### 多选 checkbox
 
 ```php
-$builder->checkbox('field', '名称');
+$grid->checkbox('field', '名称');
 ```
 
 ### 标签 tags
 
 ```php
-$builder->tags('field', '名称');
+$grid->tags('field', '名称');
 ```
 
 ### 代码 code
 
 ```php
-$builder->code('field', '名称');
+$grid->code('field', '名称');
 ```
 
 ### 树状组件 tree
 
 ```php
-$builder->tree('field', '名称');
+$grid->tree('field', '名称');
 ```
 
 ### 类型 type
 
 ```php
-$builder->type('field', '类型');
+$grid->type('field', '类型');
 ```
 
 ### 密码 password
 
 ```php
-$builder->password('field', '类型');
+$grid->password('field', '类型');
 ```
 
 ### 单张图片 image
 
 ```php
-$builder->image('field', '类型');
+$grid->image('field', '类型');
 ```
 
 ### 多张图片 images
 
 ```php
-$builder->type('field', '类型');
+$grid->type('field', '类型');
 ```
 
 ### 多张图片（临时路径） imagesTemp
 
 ```php
-$builder->type('field', '类型');
+$grid->type('field', '类型');
 ```
 
 ### 链接 link
 
 ```php
-$builder->link('field', '类型');
+$grid->link('field', '类型');
 ```
 
 ### 开关 switch
 
 ```php
-$builder->switch('field', '类型');
+$grid->switch('field', '类型');
 ```
 
 ### 多行文本 textarea
 
 ```php
-$builder->textarea('field', '类型');
+$grid->textarea('field', '类型');
 ```
 
 ### 颜色 color
 
 ```php
-$builder->color('field', '类型');
+$grid->color('field', '类型');
 ```
 
 ### 日期 date
 
 ```php
-$builder->date('field', '类型');
+$grid->date('field', '类型');
 ```
 
 ### 日期时间 datetime
 
 ```php
-$builder->datetime('field', '类型');
+$grid->datetime('field', '类型');
 ```
 
 ### 时间 time
 
 ```php
-$builder->time('field', '类型');
+$grid->time('field', '类型');
 ```
 
 ### 单选 radio
 
 ```php
-$builder->radio('field', '类型');
+$grid->radio('field', '类型');
 ```
 
 ### 下拉 select
 
 ```php
-$builder->select('field', '类型');
+$grid->select('field', '类型');
 ```
 
 ### 富文本 richHtml
 
 ```php
-$builder->richHtml('field', '类型');
+$grid->richHtml('field', '类型');
 ```
 
 ### Markdown markdown
 
 ```php
-$builder->markdown('field', '类型');
+$grid->markdown('field', '类型');
 ```
 
 ### 键值对列表 keyValueList
 
 ```php
-$builder->keyValueList('field', '类型');
+$grid->keyValueList('field', '类型');
 ```
 
 ### 多值 values
 
 ```php
-$builder->values('field', '类型');
+$grid->values('field', '类型');
 ```
 
 ### HTML html
 
 ```php
-$builder->html('field', '类型');
+$grid->html('field', '类型');
 ```
 
 ### 数字 number
 
 ```php
-$builder->number('field', '类型');
+$grid->number('field', '类型');
 ```
 
 ### 百分比 percent
 
 ```php
-$builder->percent('field', '类型');
+$grid->percent('field', '类型');
 ```
 
 ### 小数 decimal
 
 ```php
-$builder->decimal('field', '类型');
+$grid->decimal('field', '类型');
 ```
 
 ### 货币 currency
 
 ```php
-$builder->currency('field', '类型');
+$grid->currency('field', '类型');
 ```
 
 ### ID id
 
 ```php
-$builder->id('field', '类型');
+$grid->id('field', '类型');
 ```
 
 ### 验证码 captcha
 
 ```php
-$builder->captcha('field', '类型');
+$grid->captcha('field', '类型');
 ```
 
 ### 临时文件 fileTemp
 
 ```php
-$builder->fileTemp('field', '类型');
+$grid->fileTemp('field', '类型');
 ```
 
 ### 文件 file
 
 ```php
-$builder->file('field', '类型');
+$grid->file('field', '类型');
 ```
 
 ### 视频 video
 
 ```php
-$builder->video('field', '类型');
+$grid->video('field', '类型');
 ```
 
 ### 音频 audio
 
 ```php
-$builder->audio('field', '类型');
+$grid->audio('field', '类型');
 ```
 
 ### 中国地区 areaChina
 
 ```php
-$builder->areaChina('field', '类型');
+$grid->areaChina('field', '类型');
 ```
 
 ### 隐藏域 hidden
 
 ```php
-$builder->hidden('field', '类型');
+$grid->hidden('field', '类型');
 ```
 
 ### 图标 icon
 
 ```php
-$builder->icon('field', '类型');
+$grid->icon('field', '类型');
 ```
 
 

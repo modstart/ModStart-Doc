@@ -11,7 +11,7 @@
 监听 JS 脚本加载完毕事件 (ready)
 
 ```js
-MS.ready(function(){
+MS.ready(function () {
     // 页面加载完成
 });
 ```
@@ -81,7 +81,7 @@ MS.dialog.alertError(msg)
 确认信息框
 
 ```js
-MS.dialog.confirm(msg,callback)
+MS.dialog.confirm(msg, callback)
 ```
 
 - `msg` 提示文字
@@ -114,7 +114,7 @@ MS.dialog.dialog(url)
 动态加载 `script`
 
 ```js
-MS.util.loadScript(url,callback)
+MS.util.loadScript(url, callback)
 ```
 
 - `url` js 链接
@@ -125,7 +125,7 @@ MS.util.loadScript(url,callback)
 动态加载 `CSS`
 
 ```js
-MS.util.loadStylesheet(url,callback)
+MS.util.loadStylesheet(url, callback)
 ```
 
 - `url` CSS 链接
@@ -159,7 +159,7 @@ MS.util.randomString(len)
 MS.util.urlencode(str)
 ```
 
-- `str` 
+- `str`
 
 ### MS.util.specialchars
 
@@ -170,3 +170,59 @@ MS.util.specialchars(str)
 ```
 
 - `str` 字符串
+
+### MS.util.scrollTop
+
+字符串HTML转义
+
+```js
+MS.util.scrollTop(target, container)
+```
+
+- `target` 元素选择器
+- `container` 父容器选择器，为空表示整个页面
+
+## 组件
+
+### 富文本 editor
+
+默认使用了UEditor作为富文本编辑
+
+引入JS
+
+```php
+ModStart::js('asset/common/editor.js')
+```
+
+初始化富文本
+
+```html
+
+<script id="content" name="content" type="text/plain"><p>初始化HTML</p></script>
+<script>
+    // 全功能
+    MS.editor.basic('content');
+    // 精简
+    MS.editor.simple('content');
+</script>
+```
+
+### 弹窗选择器 selectorDialog
+
+使用示例
+
+```js
+new MS.selectorDialog({
+    server: "<弹窗URL>",
+    callback: function (items) {
+        console.log("选择了", items);
+    }
+}).show();
+```
+
+在弹出的 Iframe 页面中需要通过以下方法来触发关闭并回调
+
+```js
+parent.__selectorDialogItems = items;
+parent.layer.closeAll();
+```
