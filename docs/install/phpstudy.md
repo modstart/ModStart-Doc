@@ -39,46 +39,17 @@ php-5.6.9-nts
 
 <p><img style="max-width:500px;" src="https://mz-assets.tecmz.com/data//1313.png"></p>
 
-**Nginx参考配置**
+**Nginx伪静态参考配置**
 
 ```
-server {
-    listen       80;
-    server_name  xx.com;x
-    charset utf-8;
-    index index.php index.html;
-    root /var/www/html/xxx.com/public;
-    autoindex off;
-    location ^~ /.git {
-        deny all;
-    }
-    location / {
-        try_files $uri $uri/ /index.php?$query_string;
-    }
-    location ~ \.php$ {
-        fastcgi_pass   127.0.0.1:9000;
-        fastcgi_index  index.php;
-        fastcgi_param  PHP_VALUE  "open_basedir=/var/www/html/xxx.com/:/tmp/:/var/tmp/";
-        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
-        include fastcgi_params;
-    }
-    location ~ \.(gif|jpg|jpeg|png|bmp|ico|css|js)$ {
-       expires max;
-    }
-    location ~* \.(eot|ttf|woff|woff2)$ {
-        add_header Access-Control-Allow-Origin '*';
-    }
+location / {
+    try_files $uri $uri/ /index.php?$query_string;
 }
 ```
 
-**Apache参考配置**
+**Apache伪静态参考配置**
 
-```
-<VirtualHost *:80>
-    　　ServerName xxx.com
-    　　DocumentRoot d:/wwwroot/xxx.com/public
-</VirtualHost>
-```
+> 不需要配置
 
 ### 增加数据库
 <p><img style="max-width:500px;" src="https://mz-assets.tecmz.com/data//88.png"></p>

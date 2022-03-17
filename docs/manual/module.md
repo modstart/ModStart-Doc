@@ -1,7 +1,5 @@
 # 模块架构
 
-
-
 ## 模块目录介绍
 
 | 目录                             | 说明                                               |
@@ -19,95 +17,105 @@
 |  `Web` | Web前台功能组|
 |  `config.json` | 模块配置文件 |
 
-
-
 ### 模块配置文件 config.json
 
 配置文件是一个合法的JSON，请勿在JSON中包含注释，以下为了参数含义会在JSON中包含注释
 
 ```json
 {
-  // 模块唯一标示，请使用 SomeExampleName 首字母大写的驼峰命名方式
-  // 如果您的模块后期需要发布到模块市场，在开发前请先创建模块，防止与他人冲突
-  "name": "Demo",
-  // 模块文字说明
-  "title": "开发示例程序",
-  // 兼容环境，可选值为 laravel5、laravel9 ，默认为 laravel5
-  "env": [ "laravel5", "laravel9" ],
-  // 模块类型，可以包含多个，目前支持以下值
-  // PC:        电脑版
-  // Mobile:    手机H5
-  // App:       手机APP
-  // MiniApp:   小程序
-  // WxMiniApp: 微信小程序
-  // Theme:     模板主题
-  // Admin:     后台管理
-  "types": [
-    "PC",
-    "Mobile"
-  ],
-  // 当前模块版本号，请使用 主版本号.次版本号.修复版本号 的格式
-  // 大的迭代请升级主版本号，常规次二代升级次版本号，Bug修复升级修复版本号
-  "version": "1.2.0",
-  // 模块依赖，支持多个
-  "require": [
-    // 依赖 Vendor 模块任何版本
-    "Vendor",
-    // 依赖 Abc 模块任何版本 
-    "Abc:*",
-    // 依赖 Abc 模块大于等于1.1.0的版本
-    "Abc:>=1.1.0",
-    // 依赖 Abc 模块大于1.1.0的版本
-    "Abc:>1.1.0",
-    // 依赖 Abc 模块小于等于1.1.0的版本 
-    "Abc:<=1.1.0",
-    // 依赖 Abc 模块小于1.1.0的版本 
-    "Abc:<1.1.0",
-    // 依赖 Abc 模块1.1.0的版本，其他任何版本都不匹配
-    "Abc:==1.1.0"
-  ],
-  // 模块依赖的 ModStart 核心版本，可以通过 \ModStart\ModStart::$version 获取ModStart核心版本号
-  "modstartVersion": "*",
-  // 模块作者
-  "author": "ModStart",
-  // 模块描述
-  "description": "ModStart开发示例程序",
-  // 模块可配置项，可在程序中通过如下方法获取配置信息
-  // \ModStart\Module\ModuleManager::getModuleConfig('模块名','配置名')
-  "config": {
-    // 定义一个名称为 testText 的文本参数
-    "testText": [
-      [
-        "text",
-        "文字参数"
-      ]
+    // 模块唯一标示，请使用 SomeExampleName 首字母大写的驼峰命名方式
+    // 如果您的模块后期需要发布到模块市场，在开发前请先创建模块，防止与他人冲突
+    "name": "Demo",
+    // 模块文字说明
+    "title": "开发示例程序",
+    // 兼容环境，可选值为 laravel5、laravel9 ，默认为 laravel5
+    "env": [
+        "laravel5",
+        "laravel9"
     ],
-    // 定义一个名称为 testEnable 的开关
-    "testEnable": [
-      [
-        "switch",
-        "功能启用"
-      ]
+    // 模块类型，可以包含多个，目前支持以下值
+    // PC:        电脑版
+    // Mobile:    手机H5
+    // App:       手机APP
+    // MiniApp:   小程序
+    // WxMiniApp: 微信小程序
+    // Theme:     模板主题
+    // Admin:     后台管理
+    "types": [
+        "PC",
+        "Mobile"
     ],
-    // 定义一个名称为 testSelect 的下拉选项，包含两个选项
-    "testSelect": [
-      [
-        "select",
-        "下拉选择"
-      ],
-      [
-        "options",
-        {
-          "key1": "选项1",
-          "key2": "选项2"
-        }
-      ]
-    ]
-  }
+    // 当前模块版本号，请使用 主版本号.次版本号.修复版本号 的格式
+    // 大的迭代请升级主版本号，常规次二代升级次版本号，Bug修复升级修复版本号
+    "version": "1.2.0",
+    // 模块依赖，支持多个
+    "require": [
+        // 依赖 Vendor 模块任何版本
+        "Vendor",
+        // 依赖 Abc 模块任何版本 
+        "Abc:*",
+        // 依赖 Abc 模块大于等于1.1.0的版本
+        "Abc:>=1.1.0",
+        // 依赖 Abc 模块大于1.1.0的版本
+        "Abc:>1.1.0",
+        // 依赖 Abc 模块小于等于1.1.0的版本 
+        "Abc:<=1.1.0",
+        // 依赖 Abc 模块小于1.1.0的版本 
+        "Abc:<1.1.0",
+        // 依赖 Abc 模块1.1.0的版本，其他任何版本都不匹配
+        "Abc:==1.1.0"
+    ],
+    // 推荐模块，表示当前模块已适配，推荐安装
+    "suggest": [
+        // 依赖，规则同 require
+        "Abc",
+        "Abc:*"
+    ],
+    "conflicts": [
+        // 依赖，规则同 require
+        "Abc",
+        "Abc:*"
+    ],
+    // 模块依赖的 ModStart 核心版本，可以通过 \ModStart\ModStart::$version 获取ModStart核心版本号
+    "modstartVersion": "*",
+    // 模块作者
+    "author": "ModStart",
+    // 模块描述
+    "description": "ModStart开发示例程序",
+    // 模块可配置项，可在程序中通过如下方法获取配置信息
+    // \ModStart\Module\ModuleManager::getModuleConfig('模块名','配置名')
+    "config": {
+        // 定义一个名称为 testText 的文本参数
+        "testText": [
+            [
+                "text",
+                "文字参数"
+            ]
+        ],
+        // 定义一个名称为 testEnable 的开关
+        "testEnable": [
+            [
+                "switch",
+                "功能启用"
+            ]
+        ],
+        // 定义一个名称为 testSelect 的下拉选项，包含两个选项
+        "testSelect": [
+            [
+                "select",
+                "下拉选择"
+            ],
+            [
+                "options",
+                {
+                    "key1": "选项1",
+                    "key2": "选项2"
+                }
+            ]
+        ]
+    }
 }
 ```
-
-
 
 ### 模块帮助文档 Docs/doc/
 
@@ -125,15 +133,11 @@
 
 > 帮助文档使用帮助文档的文件名作为唯一标识，如果有更新会自动更新发布。
 
-
-
 ### 模块说明文档 content.md
 
 文档位置位于 `Docs/module/content.md`
 
 模块帮助文档位于 `Docs/module/content.md` ，使用模块开发助手后台上传模块时，会自动更新到模块说明文档中。
-
-
 
 ### 模块更新日志文档 release.md
 
@@ -160,8 +164,6 @@
 ```
 
 > 多个版本使用 `---` 分割。
-
-
 
 ## 后台导航菜单注册
 
@@ -210,8 +212,6 @@ ModStart系统按照如下相同的规则进行菜单合并：
 - 一级菜单（title+icon+sort）
 - 二级菜单（title）
 
-
-
 ## 后台导航菜单使用规范
 
 > 我们强烈建议您按照系统推荐的方式组织菜单避免用户安装多个模块后系统菜单变得混乱。
@@ -249,11 +249,9 @@ ModStart系统按照如下相同的规则进行菜单合并：
 | 系统管理      | 700            | code-alt     | 系统功能管理（通常用于开发阶段） |
 | \|-- 模块管理 |                |              |                                  |
 
-
-
 ## 控制台命令
 
-###  安装 module-install
+### 安装 module-install
 
 ```shell
 php artisan modstart:module-install {module} {--force}
@@ -284,8 +282,6 @@ php artisan modstart:module-install-all
 ```
 
 一条命令安装全部模块，该命令会计算模块的依赖顺序，按照顺序依次安装。
-
-
 
 ## 接口文档注解
 
@@ -337,8 +333,6 @@ class NewsController extends Controller
 - 接口请求Query参数：`@ApiQueryParam bizId int required 企业ID`
 - 接口返回Code特殊值：`@ApiResponseCode 10000 用户未登录`
 - 接口返回Data内容格式：`@ApiResponseData { }`
-
-
 
 ## 工具类注解
 
