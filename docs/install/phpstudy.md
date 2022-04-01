@@ -31,7 +31,7 @@ php-5.6.9-nts
 
 <p><img style="max-width:500px;" src="https://mz-assets.tecmz.com/data//1010.png"></p>
 
-### 配置网站根目录至.../public
+### 配置网站根目录至 public
 
 <p><img style="max-width:500px;" src="https://mz-assets.tecmz.com/data//1212.png"></p>
 

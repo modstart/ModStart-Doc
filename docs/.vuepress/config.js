@@ -31,7 +31,7 @@ module.exports = {
                 link: "https://modstart.com",
             },
             {
-                text: "快速安装",
+                text: "安装入门",
                 items: [
                     {text: '系统介绍', link: '/guide.html'},
                     {text: '安装说明', link: '/install/start.html'},
@@ -39,8 +39,8 @@ module.exports = {
                     {text: 'PHPStudy安装', link: '/install/phpstudy.html'},
                     {text: 'Docker安装', link: '/install/docker.html'},
                     {text: 'WampServer安装', link: '/install/wampserver.html'},
-                    {text: '升级指引', link: '/install/upgrade.html'},
-                    {text: '安装常见问题', link: '/install/qa.html'},
+                    {text: '系统升级说明', link: '/install/upgrade.html'},
+                    {text: '使用常见问题', link: '/install/qa.html'},
                 ]
             },
             {
@@ -75,8 +75,9 @@ module.exports = {
                 ]
             },
             {
-                text: "运维工具",
+                text: "系统运维",
                 items: [
+                    {text: "系统运维", link: "/devops/basic.html"},
                     {text: "Linux运维", link: "/devops/linux.html"},
                     {text: "开发者助手", link: "/tools/module-developer.html"},
                     {text: "持续集成", link: "/devops/deploy.html"},

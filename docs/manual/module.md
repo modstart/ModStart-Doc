@@ -76,7 +76,7 @@
         "Abc",
         "Abc:*"
     ],
-    // 模块依赖的 ModStart 核心版本，可以通过 \ModStart\ModStart::$version 获取ModStart核心版本号
+    // 模块依赖的 MSCore 版本，可以通过 \ModStart\ModStart::$version 获取 MSCore 版本号
     "modstartVersion": "*",
     // 模块作者
     "author": "ModStart",
@@ -367,3 +367,31 @@ class TestUtil
 - 名称：`@Util 名称`
 - 参数：`@param $name string 说明`
 - 返回：`@return array`
+
+
+## 模块引入第三方依赖包
+
+模块开发的重要的原则是要保证模块所有的依赖代码都位于模块目录中 `/module/Xxx`。 如需要引入第三方依赖，推荐做法是在模块目录中创建 `SDK/` 目录，将第三方依赖包放在该目录中，同时使用如下方法引入 `namespace`。
+
+第一步，创建 `SDK` 目录
+
+> 引入两个包 `package-a` 和 `package-b` 为例，完成后的目录结构参考
+
+```
+/module/Xxx
+└── SDK
+    ├── package-a
+    │   └── src
+    └── package-b
+        └── src
+```
+
+第二步，在使用包的地方显示引入
+
+> 其中 `AuthorA\PackageA` 表示包A的 `namespace`，`AuthorB\PackageB` 表示包B的 `namespace`
+
+```
+\ModStart\Module\ModuleClassLoader::addNamespace('AuthorA\PackageA', __DIR__ . '/../SDK/package-a/src');
+\ModStart\Module\ModuleClassLoader::addNamespace('AuthorB\PackageB', __DIR__ . '/../SDK/package-b/src');
+```
+

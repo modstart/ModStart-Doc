@@ -2,7 +2,7 @@
 
 ## 任务调度
 
-使用Laravel的任务调度，可以实现系统计划执行任务。
+使用 Laravel 的任务调度，可以实现系统计划执行任务。
 
 ### 如何在模块中注册一个任务调度
 
@@ -51,14 +51,44 @@ ScheduleProvider::register(ModuleXxxScheduleProvider::class);
 
 ## 队列
 
-Laravel 队列为不同的后台队列服务提供了统一的 API，例如 Beanstalk，Amazon SQS，Redis，甚至其他基于关系型数据库的队列。队列的目的是将耗时的任务延时处理，比如发送邮件，从而大幅度缩短 Web 请求和响应的时间。
+队列的目的是将耗时的任务延时处理，比如发送邮件、文档转换处理等，从而大幅度缩短 Web 请求和响应的时间。
 
-队列配置文件存放在 config/queue.php。每一种队列驱动的配置都可以在该文件中找到，包括数据库、Beanstalkd、Amazon SQS、Redis以及同步（本地使用）驱动。其中还包含了一个 null 队列驱动用于那些放弃队列的任务。
+队列配置文件存放在 config/queue.php。每一种队列驱动的配置都可以在该文件中找到，包括数据库、Beanstalkd、Amazon SQS、Redis以及同步（本地使用）驱动。
 
+### 如何使用 MySQL 作为队列驱动
 
-### 开启队列
+第一步，生成数据库队列表迁移文件
 
-我们推荐您使用 Supervisor 来管理队列进程，Supervisor 是 Linux 系统中常用的进程守护程序。如果队列进程 queue:work 意外关闭，它会自动重启启动队列进程。
+```
+php artisan queue:table
+```
+
+> 这一步会生成数据库迁移文件 database/migrations/xxxx_xx_xx_xxxxxx_create_jobs_table.php
+
+第二步，执行数据库迁移文件
+
+```
+php artisan migrate
+```
+
+第三步，在 `.env` 文件配置队列驱动为数据库
+
+```
+QUEUE_DRIVER=database
+QUEUE_CONNECTION=database
+```
+
+第四步，运行队列进程
+
+```
+php /xxx/artisan queue:work database --sleep=3 --tries=3
+```
+
+### 使用 Supervisor 管理队列进程
+
+如果你使用的是 ssh 运行的队列进程，当 ssh 连接断开时，该进程会自动停止。
+
+Supervisor 是 Linux 系统中常用的进程守护程序，如果队列进程 queue:work 意外关闭，它会自动重启启动队列进程。
 
 Supervisor 参考配置
 
@@ -68,10 +98,13 @@ process_name=%(program_name)s_%(process_num)02d
 command=php /xxx/artisan queue:work database --sleep=3 --tries=3
 autostart=true
 autorestart=true
-user=forge
+user=www
 numprocs=2
 redirect_stderr=true
 stdout_logfile=/tmp/worker.log
 ```
 
-> 在本例中，numprocs 指令让 Supervisor 运行 2 个 queue:work 进程并监视它们，如果失败的话自动重启。当然，你需要修改 queue:work database 的 command 指令来映射你的队列连接。
+> `command` 表示执行的命令
+> `user` 表示启动进程的用户
+> `numprocs` 可以控制队列进程的数量，即同时执行的任务数
+

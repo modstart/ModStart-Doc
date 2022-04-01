@@ -1,4 +1,4 @@
-# 常见问题
+# 使用常见问题
 
 ## Q：安装模块后系统报错打不开
 
@@ -221,3 +221,11 @@ UPDATE admin_user
     WHERE username = '用户名';
 ```
 
+## Q：忘记后台路径怎么办？
+
+查看网站根目录中的 `.env` 文件，查看 `ADMIN_PATH` 变量。
+
+```
+# 表示后台路径为 http://www.example.com/admin_xxx/
+ADMIN_PATH=/admin_xxx/
+```
