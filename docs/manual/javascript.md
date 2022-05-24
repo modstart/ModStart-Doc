@@ -48,7 +48,7 @@ MS.dialog.tipSuccess(msg)
 
 ### MS.dialog.tipError
 
-提示成功信息
+提示错误信息
 
 ```js
 MS.dialog.tipError(msg)
