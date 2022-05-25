@@ -6,13 +6,14 @@
 | -------------------------------- | -------------------------------------------------- |
 | `Admin`                          | 后台管理功能组                                     |
 | `Api`                            | API接口功能组                                      |
-| `Asset/` | 模块静态文件，模块安装时会被自动发布到 `public/vendor/Xxx` 目录中 |
+| `Asset/` | 模块静态文件，模块安装时会被原样复制到 `public/vendor/Xxx` 目录中 |
 | `Core/ModuleServiceProvider.php` | 模块核心提供者，会被自动加载                       |
 | `Docs`                           |                                                    |
 | `Docs/doc/`                      | 模块帮助文档                                       |
 | `Docs/module/`                   | 模块说明文档                                       |
 | `Docs/release.md`                | 模块更新日志                                       |
 | `Migrate`                        | 模块数据库迁移文件                                 |
+| `ROOT/` | 其他系统文件，模块安装时会被原样复制到网站根目录，文件已存在时会覆盖已有文件<br/>如 `ROOT/aa/bb/cc.txt` 会被复制到 `网站根目录/aa/bb/cc.txt` |
 | `View`                           | 模块视图文件，可以通过 `module::Xxx.View.xxx` 调用 |
 |  `Web` | Web前台功能组|
 |  `config.json` | 模块配置文件 |
@@ -179,7 +180,7 @@ AdminMenu::register(function () {
             'children' => [
                 [
                     'title' => '二级菜单',
-                    'url' => '\XxxController@index',
+                    'url' => '\Module\Xxx\Admin\Controller\XxxController@index',
                 ]
             ]
         ],
@@ -193,11 +194,11 @@ AdminMenu::register(function () {
                     'children' => [
                         [
                             'title' => '三级菜单',
-                            'url' => '\XxxController@index',
+                            'url' => '\Module\Xxx\Admin\Controller\XxxController@index',
                         ],
                         [
                             'title' => '三级菜单',
-                            'url' => '\XxxController@index',
+                            'url' => '\Module\Xxx\Admin\Controller\XxxController@index',
                         ]
                     ],
                 ]
@@ -211,6 +212,19 @@ ModStart系统按照如下相同的规则进行菜单合并：
 
 - 一级菜单（title+icon+sort）
 - 二级菜单（title）
+
+如需要隐藏某一个菜单不显示在菜单栏但出现在权限管理中，只需要给菜单项增加参数，如下
+
+```php
+// ...
+[
+  'title' => '二级菜单',
+  'url' => '\Module\Xxx\Admin\Controller\XxxController@index',
+  // 增加该参数不会显示在菜单栏
+  'hide' => true,
+]
+// ...
+```
 
 ## 后台导航菜单使用规范
 
@@ -249,7 +263,118 @@ ModStart系统按照如下相同的规则进行菜单合并：
 | 系统管理      | 700            | code-alt     | 系统功能管理（通常用于开发阶段） |
 | \|-- 模块管理 |                |              |                                  |
 
-## 控制台命令
+## 后台权限管理
+
+### 权限校验原理
+
+后台权限管理统一在 `ModStart\Admin\Middleware\AuthMiddleware.php` 管理，匹配规则如下：
+
+- ① 根据访问路径拼接权限标识，如 `\Module\Aaa\Admin\Controller\BbbController@ccc`
+- ② 如果管理员权限标识列表中包含第 ① 步拼接的权限标识，则校验权限成功，否则进行第 ③ 步
+- ③ 如果当前控制器定义了静态变量 `$PermitMethodMap`，对权限标识进行转换，转换表如下
+  - `currentMethod => checkMethod` 使用 当前 Controller 的 checkMethod 检查权限
+  - `currentMethod => controller@method` 使用 Controller@method 检查权限
+  - `currentMethod => @rule` 使用 rule 检查权限
+  - `currentMethod => *` 忽略匹配不到时的权限检查
+  - `* => *` 本 Controller 的所有方法匹配不到时忽略权限检查
+- ④ 查找管理员权限标识中是否拥有权限标识，如果有则校验权限成功，否则权限校验失败
+
+### 权限标识定义方法
+
+在后台导航菜单定义时，默认会 `url` 作为权限校验标识
+
+```php
+// ...
+[
+  'title' => '二级菜单',
+  'url' => '\Module\Xxx\Admin\Controller\XxxController@index',
+  // 增加隐藏菜单的参数
+  'hide' => true,
+]
+// ...
+```
+
+也可自定义权限标识
+
+```php
+// ...
+[
+  'title' => '二级菜单',
+  'url' => '\Module\Xxx\Admin\Controller\XxxController@index',
+  'rule' => 'MyCustomRule',
+  'hide' => true,
+]
+// ...
+```
+
+### 管理员权限标识获取方法
+
+使用了RBAC标准授权：
+
+用户表(admin_user)  ↔ 角色关联表(admin_user_role) ↔ 角色表(admin_role) ↔ 角色权限表(admin_role_rule)
+
+用户登录后可通过如下方法获取用户角色标识列表
+
+```php
+Session::get('_adminRules',[])
+```
+
+
+
+## 模块生命周期Hook
+
+需要在模块的安装、启用、禁用、卸载的时机执行代码，可通过创建类 `Module/Xxx/Core/ModuleHook` 实现。
+
+```php
+<?php
+
+namespace Module\Xxx\Core;
+
+class ModuleHook
+{
+    /**
+     * 安装完成
+     */
+    public function hookInstalled() { }
+
+    /**
+     * 已启用
+     */
+    public function hookEnabled() { }
+
+    /**
+     * 禁用前
+     */
+    public function hookBeforeDisable() { }
+
+    /**
+     * 卸载前
+     */
+    public function hookBeforeUninstall() { }
+}
+```
+
+## 模块管理与操作
+
+模块操作相关方法都集中在 `ModStart\Module\ModuleManager` 类中。
+
+常见示例调用如下：
+
+```php
+// 列出所有安装并启用的模块
+\ModStart\Module\ModuleManager::listAllEnabledModules();
+
+// 判断模块是否安装并启用
+\ModStart\Module\ModuleManager::isModuleEnabled('Xxx');
+// 或
+modstart_module_enabled('Xxx');
+
+// 模块 Xxx 是否安装了 >=1.2.0 的版本
+modstart_module_enabled('Member','>=1.2.0');
+```
+
+
+## 命令行模块管理
 
 ### 安装 module-install
 

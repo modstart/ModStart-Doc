@@ -29,6 +29,28 @@ return Form::make('blog', function (Detail $detail) {
 });
 ```
 
+## 字段自定义渲染
+
+```php
+$form->text('content', '字段名称')->hookRendering(function (AbstractField $field, $item, $index) {
+  // 是否为普通表单模式、增加表单模式、修改表单模式，可根据不同模式反馈不同的渲染内容
+  // $field->context()->isModeForm()
+  // $field->context()->isModeAdd()
+  // $field->context()->isModeEdit()
+  return <<<HTML
+<div class="line">
+    <div class="label">内容</div>
+    <div class="field">
+        <div style="border:2px solid red;padding:10px;">
+            字段自定义显示，其中name需要和字段column相同
+            <input type="text" name="content" value="内容" />
+        </div>
+    </div>
+</div>
+HTML;
+        });
+```
+
 
 
 ## 字段支持
@@ -156,7 +178,10 @@ $form->select('field', '类型');
 ### 富文本 richHtml
 
 ```php
+// 默认富文本
 $form->richHtml('field', '类型');
+// 简单版富文本
+$form->richHtml('field', '类型')->editorMode('simple');
 ```
 
 ### Markdown markdown

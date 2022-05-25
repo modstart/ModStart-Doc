@@ -26,6 +26,7 @@ ModStart 基于原生 Laravel 开发，独创了方便易扩展的模块开发�
 | `database/` | 包含了数据库迁移文件及填充文件 |
 | `module/`                  | 模块代码目录，每个模块一个目录 |
 | `public/`                  | 目录包含了应用入口文件 index.php 和前端资源文件（图片、JavaScript、CSS等 |
+| `public/data/`             | 上传的图片、文件、视频等静态资源会存储在该目录 |
 | `public/vendor/`           | 模块静态资源目录               |
 | `vendor/modstart/modstart` | ModStart核心架构目录           |
 | `resources/` | 包含了应用视图文件、本地化语言文件 |
@@ -134,7 +135,40 @@ Api目录中的请求，需要携带 `api-token` 请求头。
 
 > 具体可参考 `vendor/modstart/modstart/src/App/Api/Middleware/SessionMiddleware.php`
 
+### 如何控制 Cookie 信息
 
+Laravel 的 Cookie 配置信息配置文件位于 `config/session.php`，具体可参考以下几个配置
+
+- `lifetime`：会话有效期，直接控制 Cookie 的有效期，单位分钟，默认为 120 表示 2 小时
+- `expire_on_close`：关闭浏览器是否立即过期
+- `path`：Cookie 的 Path
+- `domain`：Cookie 的 域名
+
+## 文件上传与静态资源
+
+### 文件本地存储
+
+系统使用了统一的文件上传+存储方案，文件上传默认存储在 `/public/data/` 目录中，默认类型+日期进行组织，类型包括 图片（image）、视频（video）、音频（audio）、文件（file）等，具体可在 `vendor/modstart/modstart/config/data.php` 设置。
+
+### 云存储支持
+
+系统支持市面上主流云存储，如阿里云OSS、腾讯云COS等（[查看模块市场云存储支持](/store/list?category=2)）。
+
+通过安装云存储模块+配置即可完成文件上云，安装云存储已上传的文件不受影响。
+
+### 静态文件路径迁移
+
+安装完成云存储后，可以手动迁移已上传的历史文件，通过 [文件路径迁移助手](https://modstart.com/m/DataPathMigrator) 完成数据库字段静态文件路径的迁移。
+
+### 文件路径修正
+
+使用默认的本地存储，文件存储路径格式为 `/data/xxx/xxx/xxx.xx` ，对于需要返回给接口需要补全为全路径，可通过以下方法完成。
+
+```php
+// 将文件路径修正为带域名的全路径，如果本身是全路径原样反馈
+// 如 https://www.example.com/data/xxx/xxx/xxx.xx
+\ModStart\Core\Assets\AssetsUtil::fixFull('/data/xxx/xxx/xxx.xx');
+```
 
 ## 模块开发兼容性问题
 

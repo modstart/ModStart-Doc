@@ -59,7 +59,9 @@ module.exports = {
                 items: [
                     {text: '模块开发', link: '/manual/module.html'},
                     {text: '前端开发', link: '/manual/frontend.html'},
+                    {text: "视图开发", link: "/manual/view.html"},
                     {text: '主题开发', link: '/manual/template.html'},
+                    {text: 'uni-app端', link: '/manual/uniapp.html'},
                     {text: '多语言I18N', link: '/manual/i18n.html'},
                     {text: '数据表格 Grid', link: '/manual/grid.html'},
                     {text: '数据表单 Form', link: '/manual/form.html'},
@@ -67,11 +69,9 @@ module.exports = {
                     {text: 'Hook', link: '/manual/hook.html'},
                     {text: '调度和队列', link: '/manual/schedule.html'},
                     {text: '快速CRUD', link: '/manual/crud.html'},
-                    {text: 'Blade模板', link: '/manual/blade.html'},
                     {text: "CMS主题", link: "/manual/cms_theme.html"},
-                    {text: "视图页面", link: "/manual/view.html"},
-                    {text: "JavaScript库", link: "/manual/javascript.html"},
-                    {text: "性能报告", link: "/manual/performance.html"},
+                    {text: "JavaScript开发手册", link: "/manual/javascript.html"},
+                    {text: "PHP开发手册", link: "/manual/php.html"},
                 ]
             },
             {
@@ -79,9 +79,13 @@ module.exports = {
                 items: [
                     {text: "系统运维", link: "/devops/basic.html"},
                     {text: "Linux运维", link: "/devops/linux.html"},
-                    {text: "开发者助手", link: "/tools/module-developer.html"},
+                    {text: "网站运维", link: "/devops/website.html"},
                     {text: "持续集成", link: "/devops/deploy.html"},
+                    {text: "云端部署", link: "/devops/cloud.html"},
+                    {text: "系统安全", link: "/devops/security.html"},
+                    {text: "开发者助手", link: "/tools/module-developer.html"},
                     {text: "工具箱", link: "https://tools.tecmz.com"},
+                    {text: "性能报告", link: "/manual/performance.html"},
                 ],
             },
             {

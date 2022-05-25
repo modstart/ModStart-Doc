@@ -1,4 +1,4 @@
-# JavaScript库
+# JavaScript工具类
 
 为方便使用，系统内置了部分函数，加速系统的开发。
 

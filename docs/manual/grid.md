@@ -211,6 +211,12 @@ $grid->hookItemOperateRendering(function (ItemOperate $itemOperate) {
 });
 ```
 
+不显示操作列
+
+```php
+$grid->disableItemOperate();
+```
+
 ## 筛选条件的配置
 
 定义表格筛选条件

@@ -21,7 +21,7 @@ ModStart框架使用了 jQuery 等基础前端技术，页面不限于使用 Vue
 
 进入官网 [http://nodejs.cn/](http://nodejs.cn/) ，下载对应的nodejs安装包下载，完成安装。
 
-> 推荐安装 node 14 以上版本
+> 推荐安装 node 14 ，其他版本未完全测试验证 
 
 2. 打开 nodejs 命令窗口
 
@@ -147,9 +147,21 @@ webpack
 webpack --env dev --watch
 ```
 
+## 前端开发组件
+
+### 弹窗功能
+
+通过增加 `data-dialog-request` 可以快速创建一个弹窗（ iframe 模式 ）。
+
+```html
+<a href="javascript:;" data-dialog-request="/path/to/dialog">弹窗</a>
+```
+
+> 在弹窗页面通过调用 `parent.layer.closeAll()` 可以关闭操作
 
 
-## 举个例子
+
+## 实例参考
 
 Vue单页应用集成：
 

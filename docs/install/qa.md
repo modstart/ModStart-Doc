@@ -229,3 +229,67 @@ UPDATE admin_user
 # 表示后台路径为 http://www.example.com/admin_xxx/
 ADMIN_PATH=/admin_xxx/
 ```
+
+## Q：always\_populate\_raw\_post\_data 配置
+
+找到 `php.ini` 文件，进行如下配置
+
+> 配置前
+
+![](https://mz-assets.tecmz.com/data//66.png)
+
+> 配置后
+
+![](https://mz-assets.tecmz.com/data//77.png)
+
+## Q：SSL certificate problem 错误
+
+php在curl的时候报此错误：
+
+```
+cURL error 60: SSL certificate problem: unable to get local issuer certificate
+ (see http://curl.haxx.se/libcurl/c/libcurl-errors.html)
+```
+
+解决办法：
+
+1）从 https://curl.haxx.se/ca/cacert.pem 下载最新的cacert.pem
+
+2）将以下行添加到php.ini（如果这是共享托管和您没有访问php.ini然后你可以添加到.user.ini在public_html）
+
+```shell
+curl.cainfo=cacert.pem路径
+# 如 Windows 配置
+curl.cainfo=c:\wwwroot\cacert.pem
+# 如 Linux 配置
+curl.cainfo=/etccacert.pem
+```
+
+## Q：如何关闭后台登录验证码
+
+修改配置文件 `vendor/modstart/modstart/config/modstart.php`
+
+```php
+<?php
+return [
+    // ...
+    'admin' => [
+        // ...
+        'login' => [
+            // 默认开启，修改为 false 表示关闭
+            'captcha' => true,
+        ],
+    ],
+];
+```
+
+## Q：如何手动执行模块安装命令
+
+模块安装、升级时都会自动执行 `modstart:module-install` 命令，如果出现安装升级模块后部分原因未执行迁移命令（或执行失败），请参考以下命令手动执行。
+
+```shell
+## 进入网站根目录
+cd /wwwroot/xxx.com
+## 手动执行模块安装命令，Xxx为模块标识
+php artisan modstart:module-install Xxx
+```

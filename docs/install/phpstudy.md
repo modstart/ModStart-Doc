@@ -13,7 +13,7 @@
 ## PHPStudy环境配置
 
 <p><strong>创建网站</strong></p>
-<p><img style="max-width:500px;" src="https://mz-assets.tecmz.com/data//1414.png"></p>
+<p><img style="max-width:500px;" src="https://ms-assets.modstart.com/data/image/2022/05/18/22993_qxdg_1320.png"></p>
 
 ### PHP版本
 
@@ -29,15 +29,13 @@ php-5.6.9-nts
 
 ### 复制源码至根目录
 
-<p><img style="max-width:500px;" src="https://mz-assets.tecmz.com/data//1010.png"></p>
+<p><img style="max-width:500px;" src="https://ms-assets.modstart.com/data/image/2022/05/18/23055_flnk_9418.png"></p>
 
 ### 配置网站根目录至 public
 
-<p><img style="max-width:500px;" src="https://mz-assets.tecmz.com/data//1212.png"></p>
+<p><img style="max-width:500px;" src="https://ms-assets.modstart.com/data/image/2022/05/18/23103_jitm_3433.png"></p>
 
 ### 配置伪静态
-
-<p><img style="max-width:500px;" src="https://mz-assets.tecmz.com/data//1313.png"></p>
 
 **Nginx伪静态参考配置**
 
@@ -52,7 +50,7 @@ location / {
 > 不需要配置
 
 ### 增加数据库
-<p><img style="max-width:500px;" src="https://mz-assets.tecmz.com/data//88.png"></p>
+<p><img style="max-width:500px;" src="https://ms-assets.modstart.com/data/image/2022/05/18/23175_z5vd_4125.png"></p>
 
 ### 设置防止警告参数
 always_populate_raw_post_data
@@ -65,11 +63,9 @@ always_populate_raw_post_data
 ### 修改hosts
 <p>打开hosts文件</p>
 <p>在结尾新增一行解析 <code>127.0.0.1 localhost</code> 并保存退出</p>
-<p><img style="max-width:500px;" src="https://mz-assets.tecmz.com/data//99.png"></p>
 
 ### 进入安装引导
 <p><strong>访问：</strong><code>http://localhost/install.php</code></p>
-<p><img style="max-width:500px;" src="https://mz-assets.tecmz.com/data//1111.png"></p>
 
 ### 愉快的使用吧
 

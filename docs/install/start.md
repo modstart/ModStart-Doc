@@ -4,16 +4,27 @@
 
 ### 操作系统
 
-- Linux/Unix
+- Linux
 - Windows
+
+> 推荐 Linux 操作系统，性能比较好
 
 ### 软件环境
 
-- Laravel 5.1 的运行环境
-- Apache/Nginx
-- PHP 5.5.9+ 或 PHP 7.0
-- MySQL 5.0+
-- Redis（可选）
+- **Laravel 5.1 版本**
+    - `PHP 5.6` `PHP 7.0`
+    - `MySQL` `>=5.0`
+    - `PHP Extension`：`Fileinfo`
+    - `Apache/Nginx`
+
+
+- **Laravel 9.0 版本**
+    - `PHP 8.0` `PHP 8.1`
+    - `MySQL` `>=5.0`
+    - `PHP Extension`：`Fileinfo`
+    - `Apache/Nginx`
+
+> 我们的测试基于 PHP 的 5.6 / 7.0 / 8.0 / 8.1 版本，系统稳定性最好
 
 ## 安装步骤
 

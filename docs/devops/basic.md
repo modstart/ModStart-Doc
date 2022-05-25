@@ -33,3 +33,46 @@ php artisan view:clear
 ```
 
 5）访问新的系统
+
+
+## git常用命令
+
+
+```shell
+## git忽略文件权限变更
+git config --add core.filemode false
+
+## 清空git历史
+git checkout --orphan temp_branch
+git add -A
+git commit -am "init"
+git branch -D master
+git branch -m master
+
+## 修改最近一次提交信息
+git commit --amend -m "New commit message."
+
+## 存储用户名密码信息
+git config --global credential.helper store
+
+## 从HEAD往前打1个patch
+git format-patch -1 HEAD
+
+## 应用一个patch到当前分支，合并失败的文件生成 rej 文件
+git apply --reject 0001-xxx.patch
+```
+
+
+## nginx常用配置
+
+### 反向代理
+
+```
+server {
+    server_name old.example;
+    location / {
+        proxy_pass http://xx.xx.xx.xx:8080;
+        proxy_set_header Host $host;
+    }
+}
+```

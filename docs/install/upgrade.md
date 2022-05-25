@@ -98,3 +98,19 @@ php /xxx/test.com/artisan modstart:module-install-all
 
 - 如果您启用了 `Redis` 等外部缓存依赖，请清除缓存后再重新访问系统。
 - 如果您使用的是系统自带的文件缓存，直接访问新系统。
+
+
+## 常见问题
+
+### 系统升级未完全如何手动补救
+
+部分系统升级时调用升级命令失败，可通过手动执行以下命令继续完成
+
+```shell
+## 进入网站根目录
+cd /wwwroot/xxx.com
+## 执行系统迁移命令
+php artisan migrate
+## 执行模块迁移命令
+php artisan modstart:module-install-all
+```
