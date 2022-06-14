@@ -22,3 +22,7 @@ npm install -g vuepress
 npm run dev
 ```
 
+
+## 授权协议
+
+本项目采用知识共享 (Creative Commons) 署名—非商业性使用—禁止演绎 4.0公共许可协议国际版（CC BY-NC-ND 4.0）
