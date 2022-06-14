@@ -86,7 +86,6 @@ class ModuleServiceProvider extends ServiceProvider
 > 4. `module/Xxx/View/pc/test/list/news.blade.php`
 
 
-
 ## 自适应的设备视图
 
 ModStart的View根据访问设备的不同，会启用不同的视图文件，具体逻辑可参照 `\ModStart\Core\View\ResponsiveViewTrait` 中的逻辑。
@@ -115,9 +114,104 @@ ModStart的View根据访问设备的不同，会启用不同的视图文件，�
 - `@section('pageTitleMain')` 为系统标题
 - `@section('bodyContent')` 为系统正文内容部分
 
-
-
 ## 网站主色调
 
-可以通过 CSS 的变量 `var(--color-primary)` 获取。
+可以通过 CSS 的变量 `var(--color-primary)` 获取，该变量会根据用户后台设置的主色调来动态改变。
+
+## 内置变量说明
+
+### \_viewFrame 框架视图文件
+
+通过会在 blade 模板文件中看到 `@extends($_viewFrame)` 来确定当前模板的框架视图，该文件通常包含公共的头部、尾部、侧边栏等内容。
+
+`$_viewFrame` 会根据当前模板查找最先匹配到的文件，查找顺序参考[视图渲染查找顺序](#视图渲染查找顺序)。
+
+通常情况下，该变量会按照如下顺序查找：
+
+1. 当前主题视图根目录的框架视图文件，可能为以下路径中的一个
+   - `resources/views/theme/<主题>/pc/frame.blade.php`
+   - `module/<主题模块>/View/pc/frame.blade.php`
+2. 如果主题未定义框架视图文件，会使用系统默认视图目录
+   - `resources/views/theme/default/pc/frame.blade.php`
+
+### 常见 @section 说明
+
+系统约定了一些模板 `@section` ，在开发时候请遵守约定，以便系统能够正确的渲染模板。
+
+- `@section('pageTitleMain')`：系统标题，该标题后会自动补全网站主名称
+- `@section('pageKeywords')`：网站关键字
+- `@section('pageDescription')`：网站描述
+- `@section('bodyContent')`：系统正文内容部分，不包含公共的头部、尾部、侧边栏等内容
+- `@section('body')`：系统 body 标签的内容，会自动移除 body 标签中已有的内容
+- `@section('headAppend')`：追加到 head 标签的内容
+- `@section('bodyAppend')`：追加到 body 标签的内容
+
+以上的 section 定义用法示例如下
+
+```blade
+@section('pageTitleMain')我的视图标题@endsection
+```
+
+```blade
+@section('pageKeywords')我的视图关键字@endsection
+```
+
+```blade
+@section('pageDescription')我的视图描述@endsection
+```
+
+```blade
+@section('bodyContent')
+    <div class="ub-container">
+        我的视图内容
+    </div>
+@endsection
+```
+
+```blade
+@section('body')
+    <div class="ub-container">
+        我的视图内容
+    </div>
+@endsection
+```
+
+```blade
+@section('headAppend')
+    @parent
+    <script src="xxx"></script>
+@endsection
+```
+
+```blade
+@section('bodyAppend')
+    @parent
+    <script src="xxx"></script>
+@endsection
+```
+
+## 主题开发常见问题
+
+### Q：如何自定义头部和尾部
+
+在主题根目录覆盖系统默认的 `pc/frame.blade.php` 框架视图文件，该文件会包含公共的头部、尾部、侧边栏等内容。
+
+如果是主题模块，该文件将会是 `module/<主题模块>/View/pc/frame.blade.php`。
+
+如果是普通应用主题，该文件将会是 `resources/views/theme/<主题>/pc/frame.blade.php`。
+
+### Q：主题模块中的静态文件如何处理
+
+问题：主题模块中的静态资源文件（如图片、CSS、JS等）该如何处理，保证用户安装主题模块后可以通过链接访问？
+
+回答：模块安装时，静态资源会从 `module/***/Asset/` 复制到  `public/vendor/***/`，因此需要将静态资源文件统一放在主题模块的 `Asset` 目录中。
+
+### Q：开发阶段静态资源如何处理
+
+问题：系统安装后，静态资源会从 `module/***/Asset/` 复制到  `public/vendor/***/` ，开发阶段如何处理这个问题？
+
+回答：开发阶段创建一个从  `module/***/Asset/` 到  `public/vendor/***/` 的软连接，这样就可以通过 `http://xxx/vendor/***/` 访问到模块静态资源文件了。
+
+- `Linux`：运行命令 `ln -s module/***/Asset public/vendor/***`
+- `Windows`：手动创建快捷方式
 

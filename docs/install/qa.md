@@ -1,5 +1,15 @@
 # 使用常见问题
 
+## Q：安装环境检查提示缺少 xxx 函数
+
+编辑 `php.ini` 文件，找到 `disable_functions` 并将其中的 `xxx` 函数移除，然后重启服务器即可。
+
+为什么要使用这些函数？
+
+- `proc_open` : Laravel 执行 `artisan` 命令时需要用到
+- `proc_get_status` : Laravel 执行 `artisan` 命令时需要用到
+- `putenv` : Laravel 执行 `artisan` 命令时需要用到
+
 ## Q：安装模块后系统报错打不开
 
 - 第1步，删除安装的模块 `module/Xxx` 目录，尝试刷新页面打开，如果打不开请执行第2步
@@ -238,9 +248,11 @@ ADMIN_PATH=/admin_xxx/
 
 ![](https://mz-assets.tecmz.com/data//66.png)
 
-> 配置后
+> 配置后（取消注释，去掉分号）
 
 ![](https://mz-assets.tecmz.com/data//77.png)
+
+> 配置完成后需重新 PHP 服务。
 
 ## Q：SSL certificate problem 错误
 

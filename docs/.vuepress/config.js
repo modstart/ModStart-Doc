@@ -57,6 +57,7 @@ module.exports = {
             {
                 text: "参考手册",
                 items: [
+                    {text: "CMS主题开发", link: "/manual/cms_theme.html"},
                     {text: '模块开发', link: '/manual/module.html'},
                     {text: '前端开发', link: '/manual/frontend.html'},
                     {text: "视图开发", link: "/manual/view.html"},
@@ -69,7 +70,6 @@ module.exports = {
                     {text: 'Hook', link: '/manual/hook.html'},
                     {text: '调度和队列', link: '/manual/schedule.html'},
                     {text: '快速CRUD', link: '/manual/crud.html'},
-                    {text: "CMS主题", link: "/manual/cms_theme.html"},
                     {text: "JavaScript开发手册", link: "/manual/javascript.html"},
                     {text: "PHP开发手册", link: "/manual/php.html"},
                 ]
@@ -91,8 +91,9 @@ module.exports = {
             {
                 text: "更新日志",
                 items: [
-                    {text: "更新日志", link: "/change-log.html"},
-                    {text: "Laravel9.0版", link: "/change-log-cms9.html"},
+                    {text: "CMS", link: "/change-log.html"},
+                    {text: "CMS Laravel9.0版", link: "/change-log-cms9.html"},
+                    {text: "Blog", link: "/change-log-blog.html"},
                 ],
             },
         ],

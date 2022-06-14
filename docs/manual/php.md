@@ -198,7 +198,7 @@ ModelUtil::update('user',['username'=>'xxx'],['password'=>'123456']);
 
 `ModelUtil::get( $model, $where, $fields, $order )`
 - 参数：`$model` `string` 数据表
-- 参数：`$where` `id|array` 条件
+- 参数：`$where` `int|array` 条件
 - 参数：`$fields` `array` 数据表字段
 - 参数：`$order` `array` 排序，如 ['id','asc']
 - 返回：`array|null` 数据记录
@@ -207,6 +207,23 @@ ModelUtil::update('user',['username'=>'xxx'],['password'=>'123456']);
 ```php
 ModelUtil::get('user',1);
 ModelUtil::get('user',['username'=>'xxx']);
+```
+
+## 文件 FileUtil
+
+### formatByte 格式化字节
+
+`FileUtil::formatByte( $bytes, $decimals )`
+- 参数：`$bytes` `integer` 字节数
+- 参数：`$decimals` `integer` 小数最多保留位数，默认为2
+- 返回：`void` string
+
+代码示例
+```php
+// 返回 1 MB
+FileUtil::formatByte(1024*1024)
+// 返回 1.5 GB
+FileUtil::formatByte(1024*1024*1024*1.5)
 ```
 
 ## ID生成 IdUtil

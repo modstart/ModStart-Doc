@@ -26,6 +26,7 @@ Hook是用于在指定位置调用代码，可以用来代码插件式的输出�
 | `MobilePageBodyAppend` | 手机页面 `<body>` 标签尾部 |
 | `AdminPageHeadAppend` | 后台管理页面 `<head>` 标签尾部（已登录，包括弹窗） |
 | `AdminPageBodyAppend` | 后台管理页面 `<body>` 标签尾部（已登录，包括弹窗） |
+| `AdminLoginHeadAppend` | 管理员登录页面 `<head>` 标签尾部 |
 | `AdminLoginBodyAppend` | 管理员登录页面 `<body>` 标签尾部 |
 
 > 如果您是模块开发者：模块中的Hook应该在模块的说明

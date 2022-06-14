@@ -58,28 +58,6 @@ CmsThemeMyTest
 └── demo_data.php                               → 演示数据初始化
 ```
 
-## 视图文件优先级
-
-主题的视图文件（ .blade.php 结尾）可能出现在多个位置，系统在渲染视图的时候会按照以下优先级查找直到匹配成功：
-
-1. 启用主题自定义视图目录：如 `resources/views/theme/myTest`
-2. 启用主题主视图目录：如 `module/CmsThemeMyTest/View`
-3. 当前模块视图目录：如 `module/Cms/View`
-4. 系统默认视图目录：如 `resources/views/theme/default`
-
-> 举例说明：
->
->  当前系统启用了由`CmsThemeMyTest`主题模块提供的 `myTest` 主题。
->
->  在 `Cms` 模块的列表页面调用 `$this->view('cms.list.news')`返回视图文件，
->
->  系统会按照如下顺序进行视图文件的查找：
->
->  - `resources/views/theme/myTest/pc/cms/list/news.blade.php`
->  - `module/CmsThemeMyTest/View/pc/cms/list/news.blade.php`
->  - `module/Cms/View/pc/cms/list/news.blade.php`
->  - `resources/views/theme/default/pc/cms/list/news.blade.php`
-
 ## 视图数据实体
 
 ### 栏目Cat
@@ -355,31 +333,252 @@ CmsThemeMyTest
 
 ## CMS操作方法
 
-### 栏目内容 MCms::paginateCatByUrl
+### 列表 listCatByUrl
 
-根据栏目URL获取列表
-
-```php
-\MCms::paginateCatByUrl($catUrl, $page = 1, $pageSize = 10, $option = [])
-```
-
-### 栏目内容 MCms::paginateCat
-
-根据栏目ID获取列表
+根据栏目URL获取内容列表（不包含副表字段），包含子栏目
 
 ```php
-\MCms::paginateCat($catId, $page = 1, $pageSize = 10, $option = [])
+\MCms::listCatByUrl($catUrl, $page = 1, $pageSize = 10, $option = [])
 ```
 
-### 栏目最近内容 MCms::latestCat
+返回数据结构
 
-根据栏目ID获取最近记录
+```json
+[
+    {
+        "id": 1,
+        "title": "xxx",
+        // ...
+    },
+    // ...
+]
+```
+
+### 列表 listCat
+
+根据栏目ID获取内容列表（不包含副表字段），包含子栏目
+
+```php
+\MCms::listCat($catId, $page = 1, $pageSize = 10, $option = [])
+```
+
+返回数据结构
+
+```json
+[
+    {
+        "id": 1,
+        "title": "xxx",
+        // ...
+    },
+    // ...
+]
+```
+
+### 列表 pageCat
+
+根据栏目ID获取内容列表（不包含副表字段），包含子栏目
+
+```php
+\MCms::pageCat($catId, $page = 1, $pageSize = 10, $option = [])
+```
+
+返回数据结构
+
+```json
+{
+    "total": 10,
+    "records": [
+        {
+            "id": 1,
+            "title": "xxx",
+            // ...
+        },
+        // ...
+    ]
+}
+```
+
+### 列表 pageCatByUrl
+
+根据栏目URL获取内容列表（不包含副表字段），包含子栏目
+
+```php
+\MCms::pageCatByUrl($catUrl, $page = 1, $pageSize = 10, $option = [])
+```
+
+返回数据结构
+
+```json
+{
+    "total": 10,
+    "records": [
+        {
+            "id": 1,
+            "title": "xxx",
+            // ...
+        },
+        // ...
+    ]
+}
+```
+
+### 列表 pageCatWithData
+
+根据栏目ID获取内容列表（包含副表字段），不包含子栏目
+
+```php
+\MCms::pageCatWithData($catId, $page = 1, $pageSize = 10, $option = [])
+```
+
+返回数据结构
+
+```json
+{
+    "total": 10,
+    "records": [
+        {
+            "id": 1,
+            "title": "xxx",
+            // ...
+        },
+        // ...
+    ]
+}
+```
+
+### 列表 pageCatWithDataByUrl
+
+根据栏目URL获取内容列表（包含副表字段），不包含子栏目
+
+```php
+\MCms::pageCatWithDataByUrl($catUrl, $page = 1, $pageSize = 10, $option = [])
+```
+
+返回数据结构
+
+```json
+{
+    "total": 10,
+    "records": [
+        {
+            "id": 1,
+            "title": "xxx",
+            // ...
+        },
+        // ...
+    ]
+}
+```
+
+### 列表 pageCatsWithData
+
+根据多个栏目ID获取内容列表（包含副表字段），不包含子栏目，多个栏目必须为相同的模型
+
+```php
+\MCms::pageCatsWithData($catIds, $page = 1, $pageSize = 10, $option = [])
+```
+
+返回数据结构
+
+```json
+{
+    "total": 10,
+    "records": [
+        {
+            "id": 1,
+            "title": "xxx",
+            // ...
+        },
+        // ...
+    ]
+}
+```
+
+### 列表 pageCatWithDataByUrl
+
+根据多个栏目URL获取列表（包含副表字段），不包含子栏目，多个栏目必须为相同的模型
+
+```php
+\MCms::pageCatsWithDataByUrl($catUrls, $page = 1, $pageSize = 10, $option = [])
+```
+
+返回数据结构
+
+```json
+{
+    "total": 10,
+    "records": [
+        {
+            "id": 1,
+            "title": "xxx",
+            // ...
+        },
+        // ...
+    ]
+}
+```
+
+### 列表 latestCat
+
+根据栏目ID获取最新内容列表（不包含副表字段），包含子目录，
 
 ```php
 \MCms::latestCat($catId, $limit = 10)
 ```
 
-### 栏目上一条内容 MCms::prevOne
+返回数据结构
+
+```json
+[
+    {
+        "id": 1,
+        "title": "xxx",
+        // ...
+    },
+    // ...
+]
+```
+
+### 列表条件检索
+
+列表带查询条件时，需要自定义 `$option` 参数，对所有列表获取方法均适用
+
+```php
+// 精确匹配
+$option = [
+    'where' => [
+        'title' => '阿里巴巴',
+        'source' => '网络',
+    ],
+];
+// 复杂匹配
+$option = [
+    'whereOperate'=>[
+        // 模糊匹配
+        ['title','like','%阿里巴巴%'],
+        // 范围
+        ['postTime','>=','2021-01-01 00:00:00'],
+    ]
+];
+// 自定义排序
+$option = [
+    'order'=>[
+        ['id','desc']
+    ]
+];
+// 列表默认按照以下排序
+$option = [
+    'order'=>[
+        ['isTop', 'desc'],
+        ['isRecommend', 'desc'],
+        ['postTime', 'desc'],
+    ]
+];
+```
+
+
+### 栏目上一条内容 prevOne
 
 获取上一条记录
 
@@ -387,7 +586,7 @@ CmsThemeMyTest
 \MCms::prevOne($catId, $recordId)
 ```
 
-### 栏目下一条内容 MCms::nextOne
+### 栏目下一条内容 nextOne
 
 获取下一条记录
 

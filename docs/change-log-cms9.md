@@ -1,4 +1,24 @@
-# 更新日志（ Laravel 9.0 版 ）
+# ModStartCMS 更新日志（ Laravel 9.0 版 ）
+
+## v4.1.0 分词搜索适配，安全性增强
+
+:clock12: 2022.06.09
+
+- 新增：Hook新增DialogPageHeadAppend和DialogPageBodyAppend
+- 新增：部分文件下载安全性增强
+- 新增：组件 Type 新增 Grid 行内编辑
+- 新增：自动加载 App\Core\ModuleServiceProvider
+- 新增：工具栏浮动链式操作 operateFixed
+- 新增：Grid自定义默认分页大小，分页选择列表值可自定义
+- 新增：Hook新增AdminLoginHeadAppend
+- 新增：适配分词搜索，搜索结果更加精准
+- 新增：Grid全面支持字段自定义排序 sortable
+- 新增：后台管理接口免登陆请求支持
+- 新增：安全检测新增安装向导文件删除检测
+- 优化：搜索框样式优化，优化Grid列表样式和Tab样式
+- 优化：输入框显示样式，Select显示样式
+- 优化：兼容Laravel9二维码生成库使用异常问题
+- 修复：模块目录非法时自动过滤
 
 ## v4.0.0 CMS功能增强，用户管理优化
 

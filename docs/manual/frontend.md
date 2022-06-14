@@ -159,7 +159,49 @@ webpack --env dev --watch
 
 > 在弹窗页面通过调用 `parent.layer.closeAll()` 可以关闭操作
 
+具体实现方式可参考 [源代码](https://gitee.com/modstart/ModStartCMS/blob/master/vendor/modstart/modstart/resources/asset/src/lib/convenient.js)
 
+### Ajax请求
+
+构造一个Ajax请求按钮，点击按钮时，会发送一个请求到接口。
+
+```html
+<a href="javascript:;" data-ajax-request="/path/to/url" data-ajax-request-loading data-method="get" data-confirm="确定请求？">
+    模拟发送一个请求
+</a>
+```
+
+- `data-ajax-request`：定义一个快速Ajax请求
+- `data-ajax-request-loading`：请求时显示 Loading
+- `data-method` ：请求方式，默认为 `post`，可以显式定义为 `get` 或 `post`
+- `data-confirm`：弹出二次确认弹窗
+
+具体实现方式可参考 [源代码](https://gitee.com/modstart/ModStartCMS/blob/master/vendor/modstart/modstart/resources/asset/src/lib/convenient.js)
+
+### Ajax表单
+
+构造一个Ajax表单，在点击提交时，表单会以Ajax的方式请求到后台接口。
+
+```html
+<form data-ajax-form action="/path/to/url" method="post">
+  <input name="username" value="" />
+  <button type="submit">提交</button>
+</form>
+```
+
+- `data-ajax-form`：表示当前表单是一个Ajax请求表单
+
+具体实现方式可参考 [源代码](https://gitee.com/modstart/ModStartCMS/blob/master/vendor/modstart/modstart/resources/asset/src/lib/form.js)
+
+## 图片预览
+
+构造一个图片预览，点击预览后会弹出图片预览大图。
+
+```html
+<a href="javascript:;" data-image-preview="图片地址">预览</a>
+```
+
+具体实现方式可参考 [源代码](https://gitee.com/modstart/ModStartCMS/blob/master/vendor/modstart/modstart/resources/asset/src/lib/convenient.js)
 
 ## 实例参考
 

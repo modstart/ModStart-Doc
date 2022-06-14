@@ -107,6 +107,36 @@ MS.dialog.dialog(url)
 
 - `url` 链接
 
+## 接口 api
+
+### MS.api.post
+
+发送 `post` 请求
+
+```javascript
+MS.api.post( url , param, callback )
+```
+
+- `url` `string` 请求地址
+- `param` `object` 请求数据
+- `callback` 请求完成回调函数
+
+发送请求实例
+
+```javascript
+MS.api.post( '/login' , {username:'aa',password:'bb'}, function(res){
+   // 请求完成
+   MS.api.defaultCallback(res,{
+     success:function(res){
+       // 请求成功 (res.code===0）才会进入这里，如果请求失败自动按照默认规则处理（弹窗、跳转等）
+     }
+   })
+  
+})
+```
+
+
+
 ## 工具 util
 
 ### MS.util.loadScript

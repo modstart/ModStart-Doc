@@ -12,9 +12,24 @@
 
 下载并安装nodejs：[http://nodejs.cn/](http://nodejs.cn/)
 
+#### 全局安装 vue-cli
+
+```shell
+## 全局安装 vue-cli
+npm install -g @vue/cli
+```
+
 ### 2 打开项目
 
-- 进入到移动端代码目录 `module/Xxx/resources/mobile/`，安装依赖，运行 `npm install`
+- 进入到移动端代码目录，安装依赖
+  
+```shell
+## 进入到移动端目录
+cd module/Xxx/resources/mobile/
+## 安装依赖
+npm install
+```
+
 - 启动 HBuilderX 软件
 - 点击 文件 → 打开目录，选择 `module/Xxx/resources/mobile/` 目录
 

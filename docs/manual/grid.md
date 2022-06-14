@@ -236,9 +236,31 @@ $grid->gridFilter(function (GridFilter $filter) {
 $grid->gridOperateAppend('<a href="#" class="btn btn-primary">操作</a>');
 ```
 
+## 数据排序使用
 
+默认按照ID倒序排序，可自定义列表排序
 
-## 字段支持
+```php
+$grid->defaultOrder(['字段', 'asc或desc']);
+```
+
+## 字段使用介绍
+
+为 Grid 定义一个字段
+
+```php
+$field = $grid->text('field', '名称');
+```
+
+### 字段可排序
+
+定义后在 Grid 顶端会出现上下箭头的可点击实现 正序、倒序、默认 三种排序方式
+
+```php
+$field->sortable(true);
+```
+
+## 所有字段支持
 
 ### 显示 display
 
